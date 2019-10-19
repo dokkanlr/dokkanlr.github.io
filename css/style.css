@@ -1,0 +1,103 @@
+/*PAGE*/
+body {
+font-family: -apple-system, San Francisco Display, Helvetica Neue, Segoe UI, Helvetica, Arial, sans-serif;
+text-align:center;
+background:url(../images/bg.jpg);
+background-attachment:fixed;
+background-size: cover;
+}
+
+html, body {height:100%; margin:0}
+
+.flair {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+.flair:not(.selected):hover {
+  opacity: 0.7;
+}
+
+.flair.selected {
+border:3px solid #ff2525;
+border-radius:2px;
+opacity: 1;
+}
+
+.buttons {
+  display:block;
+  position:relative;
+  margin-top:20px;
+}
+
+button {
+  cursor: pointer;
+  background: #502909;
+  color: #fdf7d7;
+  border: 1px solid #ec965d;
+  border-radius: 2px;
+}
+
+.header {
+  background-image: url(../images/header.png);
+  width:334px;
+  height:100px;
+  margin:auto;
+  margin-top:20px;
+}
+
+/*FLAIR SECTION*/
+.container2 {
+width:100%;
+max-width:1200px;
+background:url(../images/bg-main.png);
+margin:auto;
+margin-top:20px;
+position:relative;
+background-size:contain;
+margin-bottom:-40px;
+}
+
+.container2:before {
+content:'';
+background:url(../images/bg-top.png) no-repeat;
+background-size: contain;
+height:20px;
+width:auto;
+position:absolute;
+top:-15px;
+right:0;
+left:0;
+margin:auto;
+pointer-events: none;
+}
+
+.container2:after {
+content:'';
+background:url(../images/bg-bot.png) no-repeat;
+background-size: contain;
+height:17px;
+width:auto;
+position:absolute;
+right:0;
+left:0;
+margin:auto;
+pointer-events:none;
+}
+
+footer {
+height:20px;
+position: absolute;
+top: 0;
+left: 0;
+width:220px;
+}
+
+footer div {
+color:#fff;
+line-height:40px;
+font-weight:400;
+font-size:12px;
+}
+
+footer div a {color:#b3b3ff;}
