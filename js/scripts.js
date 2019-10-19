@@ -1,12 +1,16 @@
 //Credits to onepiecetreasurecruise.fr for the Local Storage base code, which I have tweaked for my needs|
 //-------------------------------------------------------------------------------------------------------|
-function updateStorage(key, save) {
+function updateStorage(key, value, save) {
   if (save) {
-    localStorage.setItem(key, null);
+    localStorage.setItem(key, value);
   }
   else {
     localStorage.removeItem(key);
   }
+}
+
+function readStorageValue(key) {
+  return localStorage.getItem(value);
 }
 
 function readAllStorage() {
@@ -18,6 +22,7 @@ function readAllStorage() {
     storeKey = localStorage.key(i);
     store.push({
       "key" : storeKey,
+      "value" : readStorageValue(storeKey)
     });
   }
   return store;
@@ -61,11 +66,18 @@ function resetPage() {
   localStorage.clear();
 }
 
+function countLegends() {
+  var amount = $(".selected").length;
+  var total = $(".flair").length;
+
+  $('#counter').html("<span class='cl'>Unique Legends Owned - </span>" + amount + "/" + total);
+}
+
+
 
 jQuery(document).ready(function($) {
-
   //defines which legends have a super-evo
-  var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1085','1123','1192','1240','1314','1362','1391','1404','1434','1532','1571','1588','1610','1652','1698','1747','1751','1763','1869','1935','2074','2076','2234','2651'];
+  var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1085','1123','1192','1240','1314','1362','1391','1404','1434','1473','1532','1571','1588','1610','1652','1698','1747','1751','1763','1869','1935','2074','2076','2234','2651'];
 
   for(var v in base) {
     var item = document.getElementById(base[v]);
@@ -76,25 +88,48 @@ jQuery(document).ready(function($) {
   //restore previous state
   updatePage();
 
+  //adds counter
+  countLegends();
+
+
   // Warning- do not target only the selected class
-  $("#special span").on("click", function() {
+  $("#special span").on("click", function(e) {
     const $obj = $(this);
-    //toggles selected class
-    $obj.toggleClass("selected");
-    //creates object if selected class is present
-    const save = $obj.hasClass("selected");
-    //update the key
-    updateStorage($obj.attr("id"), save);
+
+    //shift + click toggles rainbow border
+    if(e.shiftKey){
+      $obj.toggleClass('rainbow selected');
+
+      //creates object if selected class is present
+      const save = $obj.hasClass("selected");
+
+      //update the key
+      updateStorage($obj.attr("id"), "rainbow", save);
+    }
+    else {
+      //toggles selected class
+      $obj.toggleClass("selected");
+      $obj.removeClass("rainbow");
+
+      //creates object if selected class is present
+      const save = $obj.hasClass("selected");
+
+      //update the key
+      updateStorage($obj.attr("id"), null, save);
+    }
+    countLegends();
   });
 
   //select all button
   $("#select-all").on("click", function() {
     selectPage();
+    countLegends();
   });
 
   //clear button
   $("#select-none").on("click", function() {
     resetPage();
+    countLegends();
   });
 
   //shows base forms of legends with super-evos

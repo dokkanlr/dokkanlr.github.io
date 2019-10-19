@@ -30,7 +30,15 @@ opacity: 1;
   margin-top:20px;
 }
 
+#counter {
+  display:inline-block;
+  color: #eee;
+  font-weight: 500;
+}
 
+.cl {
+  color: #ffc459;
+}
 
 button {
   cursor: pointer;
