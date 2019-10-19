@@ -1,5 +1,6 @@
-//Credits to onepiecetreasurecruise.fr for the Local Storage base code, which I have tweaked for my needs|
-//-------------------------------------------------------------------------------------------------------|
+//defines which legends have a super-evo
+var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1123','1192','1240','1314','1362','1391','1404','1434','1473','1532','1571','1588','1610','1652','1698','1747','1751','1763','1832','1869','1935','2074','2076','2234','2651'];
+
 function updateStorage(key, value, save) {
   if (save) {
     localStorage.setItem(key, value);
@@ -76,9 +77,19 @@ function resetPage() {
 
 function countLegends() {
   var amount = $(".selected").length;
+  var diff = $(".base").length;
+  var total = $(".flair").length;
+  var unique = total - diff;
+
+  $('#counter').html("<span class='cl'>Unique Legends - </span>" + amount + "/" + unique);
+  countLegends2();
+}
+
+function countLegends2() {
+  var amount = $(".selected").length;
   var total = $(".flair").length;
 
-  $('#counter').html("<span class='cl'>Unique Legends Owned - </span>" + amount + "/" + total);
+  $('#counter2').html("<span class='cl'>Total Legends - </span>" + amount + "/" + total);
 }
 
 function countRainbows() {
@@ -92,9 +103,6 @@ function countRainbows() {
 
 
 jQuery(document).ready(function($) {
-  //defines which legends have a super-evo
-  var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1123','1192','1240','1314','1362','1391','1404','1434','1473','1532','1571','1588','1610','1652','1698','1747','1751','1763','1869','1935','2074','2076','2234','2651'];
-
   for(var v in base) {
     var item = document.getElementById(base[v]);
 

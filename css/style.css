@@ -36,10 +36,11 @@ border-image-slice: 1;
   margin-top:20px;
 }
 
-#counter, #rainbow {
+#counter, #rainbow, #counter2 {
   display:inline-block;
   color: #eee;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .cl {
