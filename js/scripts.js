@@ -63,6 +63,16 @@ function resetPage() {
 
 
 jQuery(document).ready(function($) {
+
+  //defines which legends have a super-evo
+  var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1085','1123','1192','1240','1314','1362','1391','1404','1434','1532','1571','1588','1610','1652','1698','1747','1751','1763','1869','1935','2074','2076','2234','2651'];
+
+  for(var v in base) {
+    var item = document.getElementById(base[v]);
+
+    $(item).addClass('base');
+  }
+
   //restore previous state
   updatePage();
 
@@ -85,5 +95,19 @@ jQuery(document).ready(function($) {
   //clear button
   $("#select-none").on("click", function() {
     resetPage();
+  });
+
+  //shows base forms of legends with super-evos
+  $("#show-base").on("click", function() {
+    $('.base').css('display', 'inline-block');
+    $('#show-base').css('display', 'none');
+    $('#hide-base').css('display', 'inline-block');
+  });
+
+  //shows base forms of legends with super-evos
+  $("#hide-base").on("click", function() {
+    $('.base').css('display', 'none');
+    $('#hide-base').css('display', 'none');
+    $('#show-base').css('display', 'inline-block');
   });
 });

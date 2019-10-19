@@ -9,3 +9,11 @@ background-clip:padding-box;
 background-size: contain;
 display: inline-block;
 }
+
+.base {
+  display: none;
+}
+
+#hide-base {
+  display: none;
+}

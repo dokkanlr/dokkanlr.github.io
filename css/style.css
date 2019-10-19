@@ -30,6 +30,8 @@ opacity: 1;
   margin-top:20px;
 }
 
+
+
 button {
   cursor: pointer;
   background: #502909;
@@ -65,7 +67,7 @@ background-size: contain;
 height:20px;
 width:auto;
 position:absolute;
-top:-15px;
+top:-10px;
 right:0;
 left:0;
 margin:auto;
