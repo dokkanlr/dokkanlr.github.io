@@ -19,9 +19,15 @@ html, body {height:100%; margin:0}
 }
 
 .flair.selected {
-border:3px solid #ff2525;
+border:3px solid #f33b3b;
 border-radius:2px;
 opacity: 1;
+}
+
+.flair.rainbow {
+border: 3px solid transparent;
+border-image: linear-gradient(to bottom right, red, yellow, lime, aqua, blue, magenta, red);
+border-image-slice: 1;
 }
 
 .buttons {
@@ -30,7 +36,7 @@ opacity: 1;
   margin-top:20px;
 }
 
-#counter {
+#counter, #rainbow {
   display:inline-block;
   color: #eee;
   font-weight: 500;
@@ -38,6 +44,16 @@ opacity: 1;
 
 .cl {
   color: #ffc459;
+}
+
+.tooltip {
+position: absolute;
+left: 15px;
+top: -20px;
+color: #ddd;
+font-size: 13px;
+font-weight: 500;
+text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 button {

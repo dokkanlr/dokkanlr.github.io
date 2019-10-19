@@ -10,7 +10,7 @@ function updateStorage(key, value, save) {
 }
 
 function readStorageValue(key) {
-  return localStorage.getItem(value);
+  return localStorage.getItem(key);
 }
 
 function readAllStorage() {
@@ -22,6 +22,7 @@ function readAllStorage() {
     storeKey = localStorage.key(i);
     store.push({
       "key" : storeKey,
+      "value" : readStorageValue(storeKey)
     });
   }
   return store;
@@ -33,6 +34,8 @@ function updatePage() {
   //restore the selected class
   $.each(store, function(index, elem) {
     $("#" + elem.key).addClass("selected");
+    if(elem['value'] == 'rainbow')
+      $("#" + elem.key).addClass("rainbow");
   });
 }
 
@@ -45,12 +48,17 @@ function selectPage() {
 
   //loops every ID and stores key into array
   for(var i = 0; i < className.length; i++) {
-    idStore.push({"key" : className[i].id});
+    idStore.push({"key" : className[i].id, "value" : className[i].className});
   }
 
   //add IDs from array to local storage
   for(var j=0; j<idStore.length; j++) {
-    updateStorage(idStore[j]['key'], null, true);
+    if(idStore[j]['value'].includes('rainbow')) {
+      updateStorage(idStore[j]['key'], "rainbow", true);
+    }
+    else {
+      updateStorage(idStore[j]['key'], null, true);
+    }
   }
 }
 
@@ -60,6 +68,7 @@ function resetPage() {
   //delete the selected class
   $.each(store, function(index, elem) {
     $("#" + elem.key).removeClass("selected");
+    $("#" + elem.key).removeClass("rainbow");
   });
   //clears local storage
   localStorage.clear();
@@ -71,6 +80,14 @@ function countLegends() {
 
   $('#counter').html("<span class='cl'>Unique Legends Owned - </span>" + amount + "/" + total);
 }
+
+function countRainbows() {
+  var amount = $(".rainbow").length;
+  var total = $(".flair").length;
+
+  $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + amount + "/" + total);
+}
+
 
 
 
@@ -87,9 +104,11 @@ jQuery(document).ready(function($) {
   //restore previous state
   updatePage();
 
-  //adds counter
+  //legend counter
   countLegends();
 
+  //rainbow counter
+  countRainbows();
 
   // Warning- do not target only the selected class
   $("#special span").on("click", function(e) {
@@ -97,13 +116,24 @@ jQuery(document).ready(function($) {
 
     //shift + click toggles rainbow border
     if(e.shiftKey){
-      $obj.toggleClass('rainbow selected');
+      if($obj.hasClass("selected")) {
+        $obj.toggleClass('rainbow');
+      }
+      else {
+        $obj.toggleClass('rainbow selected');
+      }
 
       //creates object if selected class is present
       const save = $obj.hasClass("selected");
+      var rainbow = $obj.hasClass("rainbow");
 
-      //update the key
-      updateStorage($obj.attr("id"), "rainbow", save);
+      //updates the value accordingly
+      if(rainbow) {
+        updateStorage($obj.attr("id"), "rainbow", save);
+      }
+      else {
+        updateStorage($obj.attr("id"), null, save);
+      }
     }
     else {
       //toggles selected class
@@ -117,6 +147,7 @@ jQuery(document).ready(function($) {
       updateStorage($obj.attr("id"), null, save);
     }
     countLegends();
+    countRainbows();
   });
 
   //select all button
@@ -129,6 +160,7 @@ jQuery(document).ready(function($) {
   $("#select-none").on("click", function() {
     resetPage();
     countLegends();
+    countRainbows();
   });
 
   //shows base forms of legends with super-evos
