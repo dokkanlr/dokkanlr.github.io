@@ -10,10 +10,6 @@ background-size: contain;
 display: inline-block;
 }
 
-.base {
-  display: none;
-}
-
-#hide-base {
+#show-base {
   display: none;
 }
