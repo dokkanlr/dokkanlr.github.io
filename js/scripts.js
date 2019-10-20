@@ -1,6 +1,46 @@
-//defines which legends have a super-evo
-var base = ['261','367','416','459','530','562','669','718','720','748','870','935','1001','1035','1045','1123','1192','1240','1314','1362','1391','1404','1434','1473','1532','1571','1588','1610','1652','1698','1747','1751','1763','1832','1869','1935','2074','2076','2234','2651'];
-var final = ['578', '649','1085','1268','1413','1445','1492','1543','1593','1619','1663','1698','1707','1764','1794','1816','1847','1880','1881','1883','1910','1921','1922','1927','1928','1951','1985','2001','2007','2023','2025','2034','2035','2066','2099','2113','2138','2148','2159','2181','2195','2201','2232','2236','2245','2251','2265','2300','2302','2330','2338','2357','2363','2365','2372','2373','2418','2433','2434','2441','2444','2446','2465','2475','2477','2500','2505','2534','2536','2561','2577','2578','2588','2601','2603','2631','2672','2681','2686','2700','5012','5014',]
+//effectively links super-evos with their base forms
+var base = [
+  {base: 261, evo: 1413},
+  {base: 367, evo: 1619},
+  {base: 416, evo: 1445},
+  {base: 459, evo: 1847},
+  {base: 530, evo: 1707},
+  {base: 562, evo: 1816},
+  {base: 669, evo: 1492},
+  {base: 718, evo: 1881},
+  {base: 720, evo: 1927},
+  {base: 748, evo: 1663},
+  {base: 870, evo: 2444},
+  {base: 935, evo: 2066},
+  {base: 1001, evo: 2195},
+  {base: 1035, evo: 1928},
+  {base: 1045, evo: 2001},
+  {base: 1123, evo: 2357},
+  {base: 1192, evo: 1764},
+  {base: 1240, evo: 2034},
+  {base: 1314, evo: 2578},
+  {base: 1362, evo: 1921},
+  {base: 1391, evo: 2035},
+  {base: 1404, evo: 1593},
+  {base: 1434, evo: 1880},
+  {base: 1473, evo: 2631},
+  {base: 1532, evo: 1543},
+  {base: 1571, evo: 2372},
+  {base: 1588, evo: 2245},
+  {base: 1610, evo: 2232},
+  {base: 1652, evo: 2373},
+  {base: 1698, evo: 2159},
+  {base: 1747, evo: 2434},
+  {base: 1751, evo: 1922},
+  {base: 1763, evo: 5012},
+  {base: 1832, evo: 2138},
+  {base: 1869, evo: 2505},
+  {base: 1935, evo: 2300},
+  {base: 2074, evo: 2363},
+  {base: 2076, evo: 2588},
+  {base: 2234, evo: 2500},
+  {base: 2651, evo: 2681},
+];
 
 function updateStorage(key, value, save) {
   if (save) {
@@ -78,12 +118,28 @@ function resetPage() {
 
 //unique legend tracker
 function countLegends() {
-  var final = $(".final.selected").length;
-  var diff = $('.base').length;
-  var total = $(".flair").length;
-  var unique = total - diff;
+  var total = $(".flair").length - $(".base").length;
 
-  //$('#counter').html("<span class='cl'>Unique Legends - </span>" + final + "/" + unique);
+  var selected = $('.selected');
+  var pairs = [];
+
+  //maps evos with base
+  var baseMap = base.reduce(function(map, obj) {
+      map[obj.evo] = obj.base;
+      return map;
+  }, {});
+
+  //pushes IDs to new array
+  for(var i = 0; i < selected.length; i++) {
+    pairs.push(selected[i].id);
+  }
+
+  //creates new set and counts
+  function countUnique(iterable) {
+    return new Set(pairs.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
+  }
+
+  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + total);
   countLegends2();
 }
 
@@ -93,6 +149,7 @@ function countLegends2() {
   var total = $(".flair").length;
 
   $('#counter2').html("<span class='cl'>Total Legends - </span>" + amount + "/" + total);
+  countRainbows();
 }
 
 //rainbow tracker
@@ -111,13 +168,13 @@ jQuery(document).ready(function($) {
   document.addEventListener('contextmenu', event => event.preventDefault());
 
   for(var v in base) {
-    var item = document.getElementById(base[v]);
+    var item = document.getElementById(base[v]['base']);
 
     $(item).addClass('base');
   }
 
-  for(var u in final) {
-    var item2 = document.getElementById(final[u]);
+  for(var u in base) {
+    var item2 = document.getElementById(base[u]['evo']);
 
     $(item2).addClass('final');
   }
@@ -127,9 +184,6 @@ jQuery(document).ready(function($) {
 
   //legend counter
   countLegends();
-
-  //rainbow counter
-  countRainbows();
 
   // Warning- do not target only the selected class
   $("#special span").mousedown(function(e) {
@@ -148,7 +202,7 @@ jQuery(document).ready(function($) {
       const save = $obj.hasClass("selected");
       var rainbow = $obj.hasClass("rainbow");
 
-      //updates the value accordingly
+      //updates the storage value accordingly
       if(rainbow) {
         updateStorage($obj.attr("id"), "rainbow", save);
       }
@@ -168,7 +222,6 @@ jQuery(document).ready(function($) {
       updateStorage($obj.attr("id"), null, save);
     }
     countLegends();
-    countRainbows();
   });
 
   //select all button
@@ -181,7 +234,6 @@ jQuery(document).ready(function($) {
   $("#select-none").on("click", function() {
     resetPage();
     countLegends();
-    countRainbows();
   });
 
   //shows base forms of legends with super-evos
