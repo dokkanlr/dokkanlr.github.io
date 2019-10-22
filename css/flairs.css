@@ -13,3 +13,10 @@ display: inline-block;
 #show-base {
   display: none;
 }
+
+@media only screen and (min-width: 1921px) {
+  .flair {
+    height:70px;
+    width:70px;
+  }
+}
