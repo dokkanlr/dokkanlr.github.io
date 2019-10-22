@@ -134,7 +134,7 @@ function countLegends() {
     pairs.push(selected[i].id);
   }
 
-  //creates new set and counts
+  //creates new set and returns size
   function countUnique(iterable) {
     return new Set(pairs.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
   }
@@ -164,19 +164,12 @@ function countRainbows() {
 
 
 jQuery(document).ready(function($) {
-  //disables right-click which is preserved for rainbow borders
-  document.addEventListener('contextmenu', event => event.preventDefault());
 
+  //adds base class to pre-defined elements
   for(var v in base) {
     var item = document.getElementById(base[v]['base']);
 
     $(item).addClass('base');
-  }
-
-  for(var u in base) {
-    var item2 = document.getElementById(base[u]['evo']);
-
-    $(item2).addClass('final');
   }
 
   //restore previous state
@@ -185,12 +178,13 @@ jQuery(document).ready(function($) {
   //legend counter
   countLegends();
 
-  // Warning- do not target only the selected class
+  //main function for selecting icons
   $("#special span").mousedown(function(e) {
+    var isChecked = document.getElementById('switch').checked;
     const $obj = $(this);
 
-    //shift + click toggles rainbow border
-    if(e.which == 3){
+    //toggle must be checked first
+    if(isChecked) {
       if($obj.hasClass("selected")) {
         $obj.toggleClass('rainbow');
       }
@@ -209,9 +203,11 @@ jQuery(document).ready(function($) {
       else {
         updateStorage($obj.attr("id"), null, save);
       }
+      countLegends();
     }
+    //if not checked
     else {
-      //toggles selected class
+      //toggles selected classes
       $obj.toggleClass("selected");
       $obj.removeClass("rainbow");
 
@@ -220,8 +216,9 @@ jQuery(document).ready(function($) {
 
       //update the key
       updateStorage($obj.attr("id"), null, save);
+
+      countLegends();
     }
-    countLegends();
   });
 
   //select all button
