@@ -7,8 +7,6 @@ background-attachment:fixed;
 background-size: cover;
 }
 
-html, body {height:100%; margin:0}
-
 .flair {
   opacity: 0.4;
   filter: alpha(opacity=40);
