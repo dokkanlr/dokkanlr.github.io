@@ -92,10 +92,10 @@ loadPage = function() {
 
 		//creates HTML for special flairs
 		for (var v in name) {
-				var flair_special = document.createElement('span');
+				var flair_special = document.createElement('img');
 				flair_special.setAttribute('class', 'flair');
 				flair_special.setAttribute('id', name[v]);
-				flair_special.setAttribute('style', 'background-image: url(images/icons/'+name[v]+'.png)');
+				flair_special.setAttribute('src', 'images/icons/'+name[v]+'.png');
 
 				enter.appendChild(flair_special);
 		}

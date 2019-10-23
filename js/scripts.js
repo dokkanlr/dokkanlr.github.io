@@ -167,6 +167,7 @@ function countRainbows() {
   $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + amount + "/" + (total-disabled));
 }
 
+//un-hides all hidden legends
 function showHidden() {
   var disabled = $(".disabled");
 
@@ -174,9 +175,33 @@ function showHidden() {
     localStorage.removeItem(disabled[i].id);
   }
   $(".disabled").toggleClass("disabled");
+  $('#show-hidden').html('Show Hidden Legends (' + $('.disabled').length + ')');
 }
 
+//toggles popup window
+function toggleModal() {
+  var modal = document.querySelector(".modal");
+   modal.classList.toggle("show-modal");
+}
 
+function windowOnClick(event) {
+  var modal = document.querySelector(".modal");
+   if (event.target === modal) {
+       toggleModal();
+   }
+}
+
+//export image function
+function generateImage() {
+  toggleModal();
+  var modalContent = document.getElementsByClassName(".modal-content");
+
+  html2canvas(document.querySelector(".container2")).then(canvas => {
+    document.body.appendChild(canvas);
+  });
+
+  $('canvas');
+}
 
 jQuery(document).ready(function($) {
 
@@ -187,11 +212,21 @@ jQuery(document).ready(function($) {
     $(item).addClass('base');
   }
 
+  var modal = document.querySelector(".modal");
+  var trigger = document.querySelector(".trigger");
+  var closeButton = document.querySelector(".close-button");
+
   //restore previous state
   updatePage();
 
   //legend counter
   countLegends();
+
+  closeButton.addEventListener("click", toggleModal);
+  window.addEventListener("click", windowOnClick);
+
+  //restores hidden legend counter upon page load - must be placed under updatePage()
+  $('#show-hidden').html('Show Hidden Legends (' + $('.disabled').length + ')');
 
   //makes sure only one toggle can be flipped at a time
   $("#switch").on("change", function(){
@@ -203,7 +238,7 @@ jQuery(document).ready(function($) {
   });
 
   //main function for selecting icons
-  $("#special span").mousedown(function(e) {
+  $("#special img").mousedown(function(e) {
     var isChecked = document.getElementById('switch').checked;
     var isChecked2 = document.getElementById('hide-legends').checked;
 
@@ -241,6 +276,9 @@ jQuery(document).ready(function($) {
 
       updateStorage($obj.attr("id"), "hidden", save);
       countLegends();
+
+      //shows counter of hidden legends
+      $('#show-hidden').html('Show Hidden Legends (' + $('.disabled').length + ')');
     }
     //if not checked
     else {

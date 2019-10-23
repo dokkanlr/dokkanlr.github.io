@@ -25,6 +25,7 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/flairs.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/html2canvas.min.js"></script>
 
   <!--meta-->
   <meta charset="utf-8">
@@ -49,7 +50,14 @@
     <button id="show-base">Show 6* Forms of Super-Evos</button>
     <button id="hide-base">Hide 6* Forms of Super-Evos</button>
     <button id="show-hidden">Show Hidden Legends</button>
+    <!--<button id="generate" onclick="generateImage()">Generate Image</button>-->
   </div>
+
+  <div class="modal">
+     <div class="modal-content">
+         <span class="close-button">&times;</span>
+     </div>
+ </div>
 
   <div class="container2">
     <label class="switch">
