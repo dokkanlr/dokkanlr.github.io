@@ -75,9 +75,12 @@ function updatePage() {
   const store = readAllStorage();
   //restore the selected class
   $.each(store, function(index, elem) {
-    $("#" + elem.key).addClass("selected");
     if(elem['value'] == 'rainbow')
-      $("#" + elem.key).addClass("rainbow");
+      $("#" + elem.key).addClass("rainbow selected");
+    else if(elem['value'] == 'hidden')
+      $("#" + elem.key).addClass("disabled");
+    else
+      $("#" + elem.key).addClass("selected");
   });
 }
 
@@ -111,6 +114,7 @@ function resetPage() {
   $.each(store, function(index, elem) {
     $("#" + elem.key).removeClass("selected");
     $("#" + elem.key).removeClass("rainbow");
+    $("#" + elem.key).removeClass("disabled");
   });
   //clears local storage
   localStorage.clear();
@@ -119,6 +123,7 @@ function resetPage() {
 //unique legend tracker
 function countLegends() {
   var total = $(".flair").length - $(".base").length;
+  var disabled = $('.disabled').length;
 
   var selected = $('.selected');
   var pairs = [];
@@ -139,7 +144,7 @@ function countLegends() {
     return new Set(pairs.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
   }
 
-  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + total);
+  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + (total-disabled));
   countLegends2();
 }
 
@@ -147,8 +152,9 @@ function countLegends() {
 function countLegends2() {
   var amount = $(".selected").length;
   var total = $(".flair").length;
+  var disabled = $('.disabled').length;
 
-  $('#counter2').html("<span class='cl'>Total Legends - </span>" + amount + "/" + total);
+  $('#counter2').html("<span class='cl'>Total Legends - </span>" + amount + "/" + (total-disabled));
   countRainbows();
 }
 
@@ -156,10 +162,19 @@ function countLegends2() {
 function countRainbows() {
   var amount = $(".rainbow").length;
   var total = $(".flair").length;
+  var disabled = $('.disabled').length;
 
-  $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + amount + "/" + total);
+  $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + amount + "/" + (total-disabled));
 }
 
+function showHidden() {
+  var disabled = $(".disabled");
+
+  for(var i = 0; i < disabled.length; i++) {
+    localStorage.removeItem(disabled[i].id);
+  }
+  $(".disabled").toggleClass("disabled");
+}
 
 
 
@@ -178,12 +193,23 @@ jQuery(document).ready(function($) {
   //legend counter
   countLegends();
 
+  //makes sure only one toggle can be flipped at a time
+  $("#switch").on("change", function(){
+    $("#hide-legends").prop("checked", false);
+  });
+
+  $("#hide-legends").on("change", function(){
+    $("#switch").prop("checked", false);
+  });
+
   //main function for selecting icons
   $("#special span").mousedown(function(e) {
     var isChecked = document.getElementById('switch').checked;
+    var isChecked2 = document.getElementById('hide-legends').checked;
+
     const $obj = $(this);
 
-    //toggle must be checked first
+    //rainbow toggle must be checked
     if(isChecked) {
       if($obj.hasClass("selected")) {
         $obj.toggleClass('rainbow');
@@ -203,6 +229,17 @@ jQuery(document).ready(function($) {
       else {
         updateStorage($obj.attr("id"), null, save);
       }
+      countLegends();
+    }
+    //hide legends toggle
+    else if(isChecked2){
+      $obj.toggleClass("disabled");
+      $obj.removeClass("rainbow");
+      $obj.removeClass("selected");
+
+      const save = $obj.hasClass("disabled");
+
+      updateStorage($obj.attr("id"), "hidden", save);
       countLegends();
     }
     //if not checked
@@ -230,6 +267,12 @@ jQuery(document).ready(function($) {
   //clear button
   $("#select-none").on("click", function() {
     resetPage();
+    countLegends();
+  });
+
+  //unhide legends
+  $("#show-hidden").on("click", function() {
+    showHidden();
     countLegends();
   });
 

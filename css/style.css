@@ -31,17 +31,21 @@ border-image-slice: 1;
 .buttons {
   display:block;
   position:relative;
-  margin-top:20px;
+  margin-top:10px;
 }
 
 /* The switch - the box around the slider */
-.switch {
+.switch, .switch2 {
   position: absolute;
   display: inline-block;
   top:-24px;
   left:15px;
   width: 30px;
   height: 18px;
+}
+
+.switch2 {
+  left:200px;
 }
 
 /* Hide default HTML checkbox */
@@ -62,6 +66,14 @@ border-image-slice: 1;
   background-color: #ad876f;
   -webkit-transition: .4s;
   transition: .4s;
+}
+
+#hide-legends {
+  cursor: pointer;
+  background: #502909;
+  color: #fdf7d7;
+  border: 1px solid #ec965d;
+  border-radius: 2px;
 }
 
 .slider:before {
@@ -120,6 +132,16 @@ font-weight: 500;
 text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.tooltip2 {
+position: absolute;
+left: 240px;
+top: -24px;
+color: #eee;
+font-size: 13px;
+font-weight: 500;
+text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 button {
   cursor: pointer;
   background: #502909;
@@ -142,7 +164,7 @@ width:100%;
 max-width:1200px;
 background:url(../images/bg-main.png);
 margin:auto;
-margin-top:20px;
+margin-top:30px;
 position:relative;
 background-size:contain;
 margin-bottom:-40px;
