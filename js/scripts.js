@@ -180,8 +180,20 @@ function showHidden() {
 
 //toggles popup window
 function toggleModal() {
-  var modal = document.querySelector(".modal");
-   modal.classList.toggle("show-modal");
+
+  let modal = document.querySelector(".modal")
+  let closeBtn = document.querySelector(".close-btn")
+
+  modal.style.display = "block"
+
+  closeBtn.onclick = function(){
+    modal.style.display = "none"
+  }
+  window.onclick = function(e){
+    if(e.target == modal){
+      modal.style.display = "none"
+    }
+  }
 }
 
 function windowOnClick(event) {
@@ -194,13 +206,12 @@ function windowOnClick(event) {
 //export image function
 function generateImage() {
   toggleModal();
-  var modalContent = document.getElementsByClassName(".modal-content");
 
-  html2canvas(document.querySelector(".container2")).then(canvas => {
-    document.body.appendChild(canvas);
+  $('canvas').remove();
+  
+  html2canvas($('.container2')[0]).then(function(canvas) {
+    $(".modal-content").append(canvas);
   });
-
-  $('canvas');
 }
 
 jQuery(document).ready(function($) {
@@ -221,9 +232,6 @@ jQuery(document).ready(function($) {
 
   //legend counter
   countLegends();
-
-  closeButton.addEventListener("click", toggleModal);
-  window.addEventListener("click", windowOnClick);
 
   //restores hidden legend counter upon page load - must be placed under updatePage()
   $('#show-hidden').html('Show Hidden Legends (' + $('.disabled').length + ')');
