@@ -214,6 +214,15 @@ function generateImage() {
   });
 }
 
+function dataURLtoBlob(dataurl) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {type:mime});
+}
+
 //download feature
 function download() {
   html2canvas($('.container2')[0]).then(function(canvas) {
@@ -224,9 +233,14 @@ function download() {
       navigator.msSaveBlob(blob, fileName);
     } else {
       var a = document.createElement('a');
-      a.setAttribute('href', canvas.toDataURL());
-      a.setAttribute('target', '_blank');
-      a.setAttribute('download', fileName);
+      var imgData = canvas.toDataURL({    format: 'png',
+        multiplier: 4});
+      var blob = dataURLtoBlob(imgData);
+      var objurl = URL.createObjectURL(blob);
+
+      a.download = "checklist.png";
+
+      a.href = objurl;
       a.style.display = 'none';
       document.body.appendChild(a);
       a.click();
