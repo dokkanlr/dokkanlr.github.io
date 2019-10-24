@@ -208,11 +208,33 @@ function generateImage() {
   toggleModal();
 
   $('canvas').remove();
-  
+
   html2canvas($('.container2')[0]).then(function(canvas) {
     $(".modal-content").append(canvas);
   });
 }
+
+//download feature
+function download() {
+  html2canvas($('.container2')[0]).then(function(canvas) {
+    var fileName = 'checklist.png';
+
+    if ('msToBlob' in canvas) { // IE10+
+      var blob = canvas.msToBlob();
+      navigator.msSaveBlob(blob, fileName);
+    } else {
+      var a = document.createElement('a');
+      a.setAttribute('href', canvas.toDataURL());
+      a.setAttribute('target', '_blank');
+      a.setAttribute('download', fileName);
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  });
+}
+
 
 jQuery(document).ready(function($) {
 
