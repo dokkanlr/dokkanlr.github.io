@@ -119,6 +119,7 @@ function resetPage() {
   });
   //clears local storage
   localStorage.clear();
+  $('#show-hidden').html('Show Hidden Legends (' + $('.disabled').length + ')');
 }
 
 //unique legend tracker
