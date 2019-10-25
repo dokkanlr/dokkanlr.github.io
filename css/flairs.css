@@ -28,6 +28,6 @@ display: inline-block;
   }
 }
 
-.disabled {
+.disabled, .hidden {
   display: none;
 }

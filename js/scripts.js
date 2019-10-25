@@ -38,6 +38,7 @@ var base = [
   {base: 1935, evo: 2300},
   {base: 2074, evo: 2363},
   {base: 2076, evo: 2588},
+  {base: 2113, evo: 2739},
   {base: 2234, evo: 2500},
   {base: 2651, evo: 2681},
 ];
@@ -86,7 +87,7 @@ function updatePage() {
 
 function selectPage() {
   //adds selected class to every icon
-  $(".flair").addClass("selected");
+  $(".flair:not(.disabled)").addClass("selected");
 
   var className = document.getElementsByClassName('selected');
   var idStore = new Array();
@@ -140,11 +141,11 @@ function countLegends() {
   }
 
   //creates new set and returns size
-  function countUnique(iterable) {
+  function countUnique() {
     return new Set(pairs.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
   }
 
-  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + (total-disabled));
+  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + (total - disabled));
   countLegends2();
 }
 
@@ -360,14 +361,14 @@ jQuery(document).ready(function($) {
 
   //shows base forms of legends with super-evos
   $("#show-base").on("click", function() {
-    $('.base').css('display', 'inline-block');
+    $('.base').toggleClass('hidden');
     $('#show-base').css('display', 'none');
     $('#hide-base').css('display', 'inline-block');
   });
 
   //shows base forms of legends with super-evos
   $("#hide-base").on("click", function() {
-    $('.base').css('display', 'none');
+    $('.base').toggleClass('hidden');
     $('#hide-base').css('display', 'none');
     $('#show-base').css('display', 'inline-block');
   });
