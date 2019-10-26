@@ -124,11 +124,12 @@ function resetPage() {
 
 //unique legend tracker
 function countLegends() {
-  var total = $(".flair").length - $(".base").length;
-  var disabled = $('.disabled').length;
+  var disabled = $('.disabled');
+  var unique = $('.flair:not(.base)');
 
   var selected = $('.selected');
   var pairs = [];
+  var disabledArray = [];
 
   //maps evos with base
   var baseMap = base.reduce(function(map, obj) {
@@ -141,12 +142,17 @@ function countLegends() {
     pairs.push(selected[i].id);
   }
 
-  //creates new set and returns size
-  function countUnique() {
-    return new Set(pairs.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
+  //push IDs to disabled array to pass as argument later
+  for(var j = 0; j < disabled.length; j++) {
+    disabledArray.push(disabled[j].id);
   }
 
-  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique() + "/" + (total - disabled));
+  //creates new set and returns size
+  function countUnique(arg) {
+    return new Set(arg.map (x => baseMap.hasOwnProperty(x)? baseMap[x].toString() : x)).size;
+  }
+
+  $('#counter').html("<span class='cl'>Unique Legends - </span>" + countUnique(pairs) + "/" + (countUnique(unique) - (disabled.length - countUnique(disabledArray))));
   countLegends2();
 }
 
