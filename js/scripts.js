@@ -80,6 +80,11 @@ function updatePage() {
       $("#" + elem.key).addClass("rainbow selected");
     else if(elem['value'] == 'hidden')
       $("#" + elem.key).addClass("disabled");
+    else if (elem['value'] == 'true'){
+      $('.base').toggleClass('hidden');
+      $('#hide-base').css('display', 'none');
+      $('#show-base').css('display', 'inline-block');
+    }
     else
       $("#" + elem.key).addClass("selected");
   });
@@ -129,6 +134,7 @@ function countLegends() {
 
   var selected = $('.selected');
   var pairs = [];
+  var baseArray = [];
   var disabledArray = [];
 
   //maps evos with base
@@ -142,9 +148,15 @@ function countLegends() {
     pairs.push(selected[i].id);
   }
 
+  for(var k = 0; k < base.length; k++) {
+    baseArray.push(base[k]['base']);
+    baseArray.push(base[k]['evo']);
+  }
+
   //push IDs to disabled array to pass as argument later
   for(var j = 0; j < disabled.length; j++) {
-    disabledArray.push(disabled[j].id);
+    if(baseArray.includes(parseInt(disabled[j].id)))
+      disabledArray.push(disabled[j].id);
   }
 
   //creates new set and returns size
@@ -366,11 +378,12 @@ jQuery(document).ready(function($) {
     countLegends();
   });
 
-  //shows base forms of legends with super-evos
+  //hides base forms of legends with super-evos
   $("#show-base").on("click", function() {
     $('.base').toggleClass('hidden');
     $('#show-base').css('display', 'none');
     $('#hide-base').css('display', 'inline-block');
+    updateStorage("evohidden", null, false);
   });
 
   //shows base forms of legends with super-evos
@@ -378,5 +391,6 @@ jQuery(document).ready(function($) {
     $('.base').toggleClass('hidden');
     $('#hide-base').css('display', 'none');
     $('#show-base').css('display', 'inline-block');
+    updateStorage("evohidden", 'true', true);
   });
 });
