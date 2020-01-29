@@ -93,7 +93,11 @@ loadPage = function() {
 			2797,
 			2802,
 			2804,
+			2835,
+			2837,
 			5014,
+			5061,
+			5062
 		]
 
 		//creates HTML for special flairs
