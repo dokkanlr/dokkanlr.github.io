@@ -50,7 +50,7 @@ loadPage = function() {
 			1883,
 			1910,
 			1935,2300,
-			1951,
+			1951,2830,
 			1985,
 			2007,
 			2023,
@@ -97,7 +97,6 @@ loadPage = function() {
 			2837,
 			5014,
 			5061,
-			5062
 		]
 
 		//creates HTML for special flairs
