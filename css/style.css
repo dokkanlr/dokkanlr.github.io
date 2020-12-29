@@ -214,15 +214,18 @@ height:80px;
 margin:20px auto auto;
 }
 
-.icon-container {
+.container2 {
+position:relative;
 width:100%;
 max-width:1200px;
+margin:30px auto -40px;
+}
+
+.icon-container {
 background:url(../images/bg-main.png);
 position:relative;
-background-size:contain;
 border:4px double #84481b;
 border-radius:3px;
-margin:30px auto -40px;
 }
 
 footer {
