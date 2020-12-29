@@ -240,7 +240,7 @@ function generateImage() {
 
   $('canvas').remove();
 
-  html2canvas($('.container2')[0]).then(function(canvas) {
+  html2canvas($('.icon-container')[0]).then(function(canvas) {
     $(".modal-content").append(canvas);
   });
 }
@@ -256,7 +256,7 @@ function dataURLtoBlob(dataurl) {
 
 //download feature
 function download() {
-  html2canvas($('.container2')[0]).then(function(canvas) {
+  html2canvas($('.icon-container')[0]).then(function(canvas) {
     var fileName = 'checklist.png';
 
     if ('msToBlob' in canvas) { // IE10+
