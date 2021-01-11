@@ -27,6 +27,7 @@
   <script type="text/javascript" src="js/flairs.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
   <script type="text/javascript" src="js/html2canvas.min.js"></script>
+  <script type="text/javascript" src="js/dom-to-image.js"></script>
 
   <!--meta-->
   <meta charset="utf-8">
@@ -44,6 +45,8 @@
   <span id="counter2"></span>
   <br>
   <span id="rainbow"></span>
+  <br>
+  <span id="srainbow"></span>
 
   <div class="buttons">
     <button id="select-all">Select All</button>
@@ -59,7 +62,7 @@
       <div class="modal-header">
         <span class="modal-text">Image Export</span>
         <button id="image-download" onclick="download()">Download Image</button>
-        <p><i>(otherwise right-click > save or copy)</i></p>
+        <p><i>(otherwise, <code>right-click > copy</code> and paste it somewhere such as Discord)</i></p>
         <span class="close-btn">&times;</span>
       </div>
       <div class="modal-content"></div>
@@ -71,7 +74,13 @@
       <input id="switch" type="checkbox">
       <span class="slider round"></span>
     </label>
-    <span class="tooltip">- toggle rainbow mode</span>
+    <span class="tooltip">- rainbow mode</span>
+
+    <label class="switch3">
+      <input id="switch2" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <span class="tooltip3">- super rainbow mode</span>
 
     <label class="switch2">
       <input id="hide-legends" type="checkbox">
