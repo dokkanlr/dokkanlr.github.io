@@ -16,7 +16,7 @@ opacity:0.7;
 }
 
 .flair.selected {
-border:3px solid #f33b3b;
+border:3px solid #bb3e3e;
 border-radius:2px;
 opacity:1;
 }
@@ -29,7 +29,7 @@ background:linear-gradient(to bottom right,red,yellow,lime,aqua,blue,magenta,red
 .flair.srainbow {
 border:3px solid transparent;
 background:linear-gradient(to bottom right,#dd6f56,#f06a73,#cf4ab5,#9662d1,#53b9e1,#5bfed3,#c2f9a8,#f7f56e,#f6c40b,#dd6f56,#dd6f56,#f06a73,#cf4ab5,#9662d1,#53b9e1,#5bfed3,#c2f9a8,#f7f56e,#f6c40b,#dd6f56,#dd6f56,#f06a73,#cf4ab5,#9662d1,#53b9e1,#5bfed3,#c2f9a8,#f7f56e,#f6c40b,#dd6f56,#dd6f56,#f06a73,#cf4ab5,#9662d1,#53b9e1,#5bfed3,#c2f9a8,#f7f56e,#f6c40b,#dd6f56,#dd6f56,#f06a73,#cf4ab5,#9662d1,#53b9e1,#5bfed3,#c2f9a8,#f7f56e,#f6c40b,#dd6f56) border-box;
-box-shadow: 2px 2px 5px 3px #FF8080, -3px 2px 5px 3px #FFE488, -3px -2px 5px 3px #8CFF85, 3px -2px 5px 3px #80C7FF, 3px 2px 5px 3px #E488FF, -3px 2px 5px 3px #FF616B, -3px -2px 10px 3px #8E5CFF, 2px 2px 5px 3px rgba(0,0,0,0);
+box-shadow: 2px 2px 5px 2px #FF8080, -3px 2px 5px 2px #FFE488, -3px -2px 5px 2px #8CFF85, 3px -2px 5px 2px #80C7FF, 3px 2px 5px 2px #E488FF, -3px 2px 5px 2px #FF616B, -3px -2px 10px 2px #8E5CFF, 2px 2px 5px 2px rgba(0,0,0,0);
 }
 
 .buttons {
@@ -52,7 +52,7 @@ color: #fff;
 font-size: 12px;
 }
 
-.modal {
+.modal, .modal2 {
 display:none;
 position:fixed;
 padding-top:20px;
@@ -64,16 +64,24 @@ background-color:rgba(0,0,0,0.5);
 z-index:999;
 }
 
+.modal2 {
+padding-top:150px;
+}
+
 .modal-container {
 max-width:1260px;
 margin:auto;
 }
 
-.modal-content {
+.modal-content, .modal-content2 {
 position:relative;
 background-color:#eff1f5;
 margin:auto;
 padding:15px 0;
+}
+
+.modal-content2 {
+background-color:#211c17;
 }
 
 .modal-header {
@@ -88,7 +96,7 @@ color:#eee;
 line-height:40px;
 }
 
-.close-btn {
+.close-btn, .close-btn2 {
 position:absolute;
 top:5px;
 right:5px;

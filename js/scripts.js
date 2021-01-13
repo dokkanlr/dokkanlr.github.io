@@ -105,7 +105,7 @@ function updatePage() {
 
 function selectPage() {
   //adds selected class to every icon
-  $(".flair:not(.disabled)").addClass("selected");
+  $("#special .flair:not(.disabled)").addClass("selected");
 
   var className = document.getElementsByClassName('selected');
   var idStore = new Array();
@@ -141,13 +141,13 @@ function resetPage() {
   });
   //clears local storage
   localStorage.clear();
-  $('#show-hidden').html('Show Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
 }
 
 //unique legend tracker
 function countLegends() {
   var disabled = $('.disabled');
-  var unique = $('.flair:not(.base)');
+  var unique = $('#special .flair:not(.base)');
 
   var selected = $('.selected');
   var pairs = [];
@@ -188,7 +188,7 @@ function countLegends() {
 //total legend tracker
 function countLegends2() {
   var amount = $(".selected").length;
-  var total = $(".flair").length;
+  var total = $("#special .flair").length;
   var disabled = $('.disabled').length;
 
   $('#counter2').html("<span class='cl'>Total Legends - </span>" + amount + "/" + (total-disabled));
@@ -199,16 +199,17 @@ function countLegends2() {
 //rainbow tracker
 function countRainbows() {
   var amount = $(".rainbow").length;
-  var total = $(".flair").length;
+  var amount2 = $(".srainbow").length;
+  var total = $("#special .flair").length;
   var disabled = $('.disabled').length;
 
-  $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + amount + "/" + (total-disabled));
+  $('#rainbow').html("<span class='cl'>Rainbowed - </span>" + (amount + amount2) + "/" + (total-disabled));
 }
 
 //super rainbow tracker
 function countSrainbows() {
   var amount = $(".srainbow").length;
-  var total = $(".flair").length;
+  var total = $("#special .flair").length;
   var disabled = $('.disabled').length;
 
   $('#srainbow').html("<span class='cl'>Super Rainbowed - </span>" + amount + "/" + (total-disabled));
@@ -222,7 +223,44 @@ function showHidden() {
     localStorage.removeItem(disabled[i].id);
   }
   $(".disabled").toggleClass("disabled");
-  $('#show-hidden').html('Show Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+}
+
+//unhides specific Legends
+function listHidden() {
+  toggleModal2();
+  $(".modal-content2").empty();
+  $("#switch").prop("checked", false);
+  $("#switch2").prop("checked", false);
+  $("#hide-legends").prop("checked", false);
+
+  var disabled = $(".disabled");
+  var box = $('.modal-content2');
+
+  //creates new images for hidden legends
+  for(var i = 0; i < disabled.length; i++) {
+    var flair = document.createElement('img');
+    flair.setAttribute('class', 'flair');
+    flair.setAttribute('name', disabled[i].id);
+    flair.setAttribute('src', 'images/icons/'+disabled[i].id+'.png');
+
+    box.append(flair);
+  }
+
+  //unhide legends in checklist when clicked
+  $(".modal-content2 img").mousedown(function(e) {
+    const $obj = $(this);
+    var id = $obj[0].name;
+
+    $("#"+id).removeClass('disabled');
+    //removes from modal display
+    $obj.hide();
+    //removes from local storage
+    localStorage.removeItem(id);
+    //updates counters
+    $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+    countLegends();
+  });
 }
 
 //toggles popup window
@@ -230,6 +268,24 @@ function toggleModal() {
 
   let modal = document.querySelector(".modal")
   let closeBtn = document.querySelector(".close-btn")
+
+  modal.style.display = "block"
+
+  closeBtn.onclick = function(){
+    modal.style.display = "none"
+  }
+  window.onclick = function(e){
+    if(e.target == modal){
+      modal.style.display = "none"
+    }
+  }
+}
+
+//toggles 2nd popup window
+function toggleModal2() {
+
+  let modal = document.querySelector(".modal2")
+  let closeBtn = document.querySelector(".close-btn2")
 
   modal.style.display = "block"
 
@@ -284,10 +340,6 @@ jQuery(document).ready(function($) {
     $(item).addClass('base');
   }
 
-  var modal = document.querySelector(".modal");
-  var trigger = document.querySelector(".trigger");
-  var closeButton = document.querySelector(".close-button");
-
   //restore previous state
   updatePage();
 
@@ -295,7 +347,7 @@ jQuery(document).ready(function($) {
   countLegends();
 
   //restores hidden legend counter upon page load - must be placed under updatePage()
-  $('#show-hidden').html('Show Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
 
   //makes sure only one toggle can be flipped at a time
   $("#switch").on("change", function(){
@@ -357,7 +409,7 @@ jQuery(document).ready(function($) {
       countLegends();
 
       //shows counter of hidden legends
-      $('#show-hidden').html('Show Removed Legends (' + $('.disabled').length + ')');
+      $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
     }
     //super rainbow toggle
     else if(isChecked3){
@@ -411,9 +463,15 @@ jQuery(document).ready(function($) {
     countLegends();
   });
 
-  //unhide legends
+  //unhide all legends
   $("#show-hidden").on("click", function() {
     showHidden();
+    countLegends();
+  });
+
+  //unhide specific legends
+  $("#list-hidden").on("click", function() {
+    listHidden();
     countLegends();
   });
 
