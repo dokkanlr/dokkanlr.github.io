@@ -104,11 +104,28 @@ function updatePage() {
 }
 
 function selectPage() {
-  //adds selected class to every icon
-  $("#special .flair:not(.disabled)").addClass("selected");
+  var isChecked = document.getElementById('switch').checked;
+  var isChecked2 = document.getElementById('switch2').checked;
+
+  if (isChecked) {
+    $("#special .flair:not(.disabled)").addClass("rainbow");
+    $("#special .flair:not(.disabled)").removeClass("srainbow");
+  }
+  else if (isChecked2) {
+    $("#special .flair:not(.disabled)").addClass("srainbow");
+    $("#special .flair:not(.disabled)").removeClass("rainbow");
+  }
+  else {
+    //adds selected class to every icon
+    $("#special .flair:not(.disabled)").addClass("selected");
+    $("#special .flair:not(.disabled)").removeClass("rainbow");
+    $("#special .flair:not(.disabled)").removeClass("srainbow");
+  }
+
 
   var className = document.getElementsByClassName('selected');
   var idStore = new Array();
+
 
   //loops every ID and stores key into array
   for(var i = 0; i < className.length; i++) {
