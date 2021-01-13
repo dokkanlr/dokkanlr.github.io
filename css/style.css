@@ -52,6 +52,11 @@ color: #fff;
 font-size: 12px;
 }
 
+.modal2 .modal-header p {
+left: 5px;
+top: 5px;
+}
+
 .modal, .modal2 {
 display:none;
 position:fixed;
