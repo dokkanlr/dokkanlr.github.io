@@ -339,11 +339,8 @@ function generateImage() {
 
 //download feature
 function download() {
-  domtoimage.toPng($('.icon-container')[0]).then(function (dataUrl) {
-        var link = document.createElement('a');
-        link.download = 'checklist.png';
-        link.href = dataUrl;
-        link.click();
+  domtoimage.toBlob($('.icon-container')[0]).then(function (blob) {
+        window.saveAs(blob, 'my-node.png');
     });
 }
 
