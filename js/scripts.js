@@ -340,7 +340,7 @@ function generateImage() {
 //download feature
 function download() {
   domtoimage.toBlob($('.icon-container')[0]).then(function (blob) {
-        window.saveAs(blob, 'my-node.png');
+        window.saveAs(blob, 'checklist.jpg');
     });
 }
 
