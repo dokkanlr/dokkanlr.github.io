@@ -283,3 +283,13 @@ color:#fdf7d7;
 border:1px solid #ec965d;
 border-radius:2px;
 }
+
+div.btn-container {display:block!important}
+
+.btn-container a.kofi-button {
+position:absolute;
+left:220px;
+top:5px;
+font-size:13px!important;
+line-height:25px!important;
+}
