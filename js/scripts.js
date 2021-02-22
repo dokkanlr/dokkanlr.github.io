@@ -160,7 +160,7 @@ function resetPage() {
   });
   //clears local storage
   localStorage.clear();
-  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide All Removed Legends (' + $('.disabled').length + ')');
 }
 
 //unique legend tracker
@@ -242,7 +242,7 @@ function showHidden() {
     localStorage.removeItem(disabled[i].id);
   }
   $(".disabled").toggleClass("disabled");
-  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide All Removed Legends (' + $('.disabled').length + ')');
 }
 
 //unhides specific Legends
@@ -277,7 +277,7 @@ function listHidden() {
     //removes from local storage
     localStorage.removeItem(id);
     //updates counters
-    $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+    $('#show-hidden').html('Unhide All Removed Legends (' + $('.disabled').length + ')');
     countLegends();
   });
 }
@@ -363,7 +363,7 @@ jQuery(document).ready(function($) {
   countLegends();
 
   //restores hidden legend counter upon page load - must be placed under updatePage()
-  $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+  $('#show-hidden').html('Unhide All Removed Legends (' + $('.disabled').length + ')');
 
   //makes sure only one toggle can be flipped at a time
   $("#switch").on("change", function(){
@@ -425,7 +425,7 @@ jQuery(document).ready(function($) {
       countLegends();
 
       //shows counter of hidden legends
-      $('#show-hidden').html('Unhide Removed Legends (' + $('.disabled').length + ')');
+      $('#show-hidden').html('Unhide All Removed Legends (' + $('.disabled').length + ')');
     }
     //super rainbow toggle
     else if(isChecked3){
