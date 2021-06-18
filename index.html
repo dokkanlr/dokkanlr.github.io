@@ -28,6 +28,7 @@
   <script type="text/javascript" src="js/scripts.js"></script>
   <script type="text/javascript" src="js/dom-to-image.js"></script>
   <script src="js/FileSaver.js"></script>
+  <script src="js/lz-string.js"></script>
 
   <!--meta-->
   <meta charset="utf-8">
@@ -35,7 +36,7 @@
   <meta name="description" content="Legend Checklist for OPTC">
 </head>
 
-<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#db2c40', 'I2I83GNOL');kofiwidget2.draw();</script> 
+<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#db2c40', 'I2I83GNOL');kofiwidget2.draw();</script>
 
 <body>
   <noscript>JavaScript is required to run this page.</noscript>
@@ -58,6 +59,7 @@
     <button id="show-hidden">Unhide Removed Legends</button>
     <button id="list-hidden">List Removed Legends</button>
     <button id="generate" onclick="generateImage()">Generate Image</button>
+    <button onclick="toggleModal3()">Import/Export</button>
   </div>
 
   <div class="modal">
@@ -80,6 +82,25 @@
         <span class="close-btn2">&times;</span>
       </div>
       <div class="modal-content2"></div>
+    </div>
+  </div>
+
+  <div class="modal3">
+    <div class="modal-container">
+      <div class="modal-header">
+        <span class="modal-text">Import/Export Checklist</span>
+        <span class="close-btn3">&times;</span>
+      </div>
+      <div class="modal-content3">
+        <p class="warning">WARNING: Importing WILL overwrite your current checklist.</p>
+        <button id="import" onclick="toggleImport()">Import Checklist</button>
+        <button id="export" onclick="exportSelection()">Export Checklist</button>
+        <input type="text" id="import-text"><button id="apply-import" onclick="importSelection()">Apply</button>
+        <input type="text" id="export-text" onclick="this.setSelectionRange(0, this.value.length)"><button id="copy-export" onclick="copySelection()">Copy</button>
+        <div id="display-copied">Copied to clipboard!</div>
+        <div id="imported">Checklist imported!</div>
+        <div id="undefined">Invalid data, please generate a new export</div>
+      </div>
     </div>
   </div>
 

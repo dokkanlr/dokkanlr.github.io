@@ -321,6 +321,24 @@ function toggleModal2() {
   }
 }
 
+//toggles 3rd popup window
+function toggleModal3() {
+
+  let modal = document.querySelector(".modal3")
+  let closeBtn = document.querySelector(".close-btn3")
+
+  modal.style.display = "block"
+
+  closeBtn.onclick = function(){
+    modal.style.display = "none"
+  }
+  window.onclick = function(e){
+    if(e.target == modal){
+      modal.style.display = "none"
+    }
+  }
+}
+
 function windowOnClick(event) {
   var modal = document.querySelector(".modal");
    if (event.target === modal) {
@@ -349,9 +367,69 @@ function download() {
     });
 }
 
+//export localStorage
+function exportSelection() {
+  $('#import-text').attr("style", "opacity: 0; z-index: -1;");
+  $('#apply-import').attr("style", "opacity: 0; z-index: -1;");
+  $('#copy-export').attr("style", "opacity: 1; z-index: 1;");
+  var raw = JSON.stringify(localStorage);
+  container = document.getElementById("export-text");
+  container.setAttribute("style", "transform: translateY(0); opacity: 1; z-index: 1;");
+  container.value = LZString.compressToEncodedURIComponent(raw);
+}
+
+//copy exported data
+function copySelection() {
+  container = document.getElementById("export-text");
+  container.select();
+  document.execCommand("copy");
+  $('#display-copied').fadeIn().delay(1000).fadeOut();
+}
+
+//import button
+function toggleImport() {
+  $('#export-text').attr("style", "opacity: 0; z-index: -1;");
+  $('#copy-export').attr("style", "opacity: 0; z-index: -1;");
+  $('#apply-import').attr("style", "opacity: 1; z-index: 1;");
+  $("#import-text").attr("style", "transform: translateY(0); opacity: 1; z-index: 1;");
+}
+
+//apply imported data
+function importSelection() {
+  var text = document.getElementById("import-text").value;
+
+  plaintext = LZString.decompressFromEncodedURIComponent(text);
+
+  //clears local storage
+  localStorage.clear();
+
+  try {
+    // Convert to a JSON object
+    data = JSON.parse(plaintext);
+
+    console.log(data);
+
+    // Iterate over the JSON object and save to localstorage
+    Object.keys(data).map(function(key, index) {
+        var value = data[key];
+        localStorage.setItem(key, value);
+    });
+
+    $('#imported').fadeIn().delay(1000).fadeOut();
+  }
+  //if error
+  catch {
+    $('#undefined').fadeIn().delay(1000).fadeOut();
+  }
+
+  //restore previous state
+  updatePage();
+
+  //legend counter
+  countLegends();
+}
 
 jQuery(document).ready(function($) {
-
   //adds base class to pre-defined elements
   for(var v in base) {
     var item = document.getElementById(base[v]['base']);
