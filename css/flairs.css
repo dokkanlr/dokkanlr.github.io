@@ -1,6 +1,6 @@
 .flair {
-height:50px;
-width:50px;
+height:70px;
+width:70px;
 cursor:pointer;
 margin-right:6px;
 margin-top:6px;
@@ -16,15 +16,15 @@ display: inline-block;
 
 @media only screen and (min-width: 1921px) {
   .flair {
-    height:70px;
-    width:70px;
+    height:90px;
+    width:90px;
   }
 }
 
 @media only screen and (max-width: 760px) {
   .flair {
-    height:40px;
-    width:40px;
+    height:50px;
+    width:50px;
   }
 }
 

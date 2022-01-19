@@ -2,19 +2,9 @@
 <html>
 <head>
 
-  <title>OPTC Legend Checklist</title>
-  <!--tracking-->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136683124-5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <title>Dokkan LR Checklist</title>
 
-    gtag('config', 'UA-136683124-5');
-  </script>
-
-  <link rel="icon" type="image/x-icon" href="red.ico">
+  <link rel="icon" type="image/x-icon" href="lr.ico">
 
   <!--stylesheets-->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -33,10 +23,8 @@
   <!--meta-->
   <meta charset="utf-8">
   <meta name="author" content="antonlabz">
-  <meta name="description" content="Legend Checklist for OPTC">
+  <meta name="description" content="LR Checklist for Dokkan Battle">
 </head>
-
-<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#db2c40', 'I2I83GNOL');kofiwidget2.draw();</script>
 
 <body>
   <noscript>JavaScript is required to run this page.</noscript>
@@ -44,20 +32,11 @@
   <div class="header"></div>
 
   <span id="counter"></span>
-  <br>
-  <span id="counter2"></span>
-  <br>
-  <span id="rainbow"></span>
-  <br>
-  <span id="srainbow"></span>
 
   <div class="buttons">
     <button id="select-all">Select All</button>
     <button id="select-none">Reset</button>
-    <button id="show-base">Show ★6 Forms of Super-Evos</button>
-    <button id="hide-base">Hide ★6 Forms of Super-Evos</button>
-    <button id="show-hidden">Unhide Removed Legends</button>
-    <button id="list-hidden">List Removed Legends</button>
+    <button id="list-hidden">List Removed LRs</button>
     <button id="generate" onclick="generateImage()">Generate Image</button>
     <button onclick="toggleModal3()">Import/Export</button>
   </div>
@@ -77,8 +56,8 @@
   <div class="modal2">
     <div class="modal-container">
       <div class="modal-header">
-        <span class="modal-text">Removed Legends</span>
-        <p><i>(Click icons to unhide legends)</i></p>
+        <span class="modal-text">Removed LRs</span>
+        <p><i>(Click icons to unhide LRs)</i></p>
         <span class="close-btn2">&times;</span>
       </div>
       <div class="modal-content2"></div>
@@ -106,22 +85,10 @@
 
   <div class="container2">
     <label class="switch">
-      <input id="switch" type="checkbox">
-      <span class="slider round"></span>
-    </label>
-    <span class="tooltip">- rainbow mode</span>
-
-    <label class="switch3">
-      <input id="switch2" type="checkbox">
-      <span class="slider round"></span>
-    </label>
-    <span class="tooltip3">- super rainbow mode</span>
-
-    <label class="switch2">
-      <input id="hide-legends" type="checkbox">
+      <input id="hide-lr" type="checkbox">
       <span class="slider"></span>
     </label>
-    <span class="tooltip2">- remove legends from list</span>
+    <span class="tooltip">- remove LRs from list</span>
 
       <div class="icon-container">
         <div id="special"></div>
@@ -132,11 +99,11 @@
 
 <footer>
   <div>
-    2019 -
+    2022 -
     <script>
     document.write(new Date().getFullYear());
     </script>.
-    Created by <a href="http://www.reddit.com/message/compose/?to=antonlabz&subject=OPTC%20Legend%20Checklist">antonlabz</a>.
+    Created by <a href="http://www.reddit.com/message/compose/?to=antonlabz&subject=Dokkan%20LR%20Checklist">antonlabz</a>.
   </div>
 </footer>
 
