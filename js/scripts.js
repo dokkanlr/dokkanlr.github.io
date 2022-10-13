@@ -308,8 +308,10 @@ jQuery(document).ready(function($) {
 
   //clear button
   $("#select-none").on("click", function() {
-    resetPage();
-    countLegends();
+    if (confirm("Are you sure you want to reset the checklist?")){
+      resetPage();
+      countLegends();
+    }
   });
 
   //unhide specific legends
