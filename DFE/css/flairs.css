@@ -1,0 +1,33 @@
+.flair {
+height:70px;
+width:80px;
+cursor:pointer;
+margin-right:6px;
+margin-top:6px;
+border:3px solid transparent;
+background-clip:padding-box;
+background-size: contain;
+display: inline-block;
+}
+
+#show-base {
+  display: none;
+}
+
+@media only screen and (min-width: 1921px) {
+  .flair {
+    height:90px;
+    width:100px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .flair {
+    height:50px;
+    width:60px;
+  }
+}
+
+.disabled, .hidden {
+  display: none;
+}
