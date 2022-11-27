@@ -6,7 +6,7 @@ loadPage = function() {
 	loadSpecial = function() {
 		var enter = document.getElementById('special');
 
-		for (i=1; i<=108; i++) {
+		for (i=1; i<=109; i++) {
 			//creates HTML for special flairs
 			var flair_special = document.createElement('img');
 			flair_special.setAttribute('class', 'flair');
