@@ -1,3 +1,22 @@
+// check server directory via API link to count images
+$.ajax({
+  url: "https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master",
+  success: function (data) {
+      var image_count = $(data).length;
+
+      var enter = document.getElementById('special');
+
+      // loop to generate flairs based on file count
+      for (var i = 1; i <= image_count; i++) {
+        var flair_special = document.createElement('img');
+        flair_special.setAttribute('class', 'flair');
+        flair_special.setAttribute('id', i);
+        flair_special.setAttribute('src', 'images/icons/'+i+'.png');
+        enter.appendChild(flair_special);
+      }
+    }
+});
+
 // updates local storage values
 function updateStorage(key, value, save) {
   if (save) {
@@ -269,31 +288,6 @@ function importSelection() {
 }
 
 jQuery(document).ready(function($) {
-  // create icon elements based on server directory file count
-  var xhr = new XMLHttpRequest();
-
-  xhr.open("GET", "https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master", true);
-
-  xhr.onload = function() {
-  	if (xhr.readyState === xhr.DONE) {
-  		if (xhr.status === 200) {
-  			// match strictly against the XML containing the file URL elements in server directory
-  			var n = (xhr.response.match(/"name": "[0-9]{1,3}.png/g).length);
-
-  			var enter = document.getElementById('special');
-
-  			// loop to generate flairs based on file count
-  			for (var i = 1; i <= n; i++) {
-  				var flair_special = document.createElement('img');
-  				flair_special.setAttribute('class', 'flair');
-  				flair_special.setAttribute('id', i);
-  				flair_special.setAttribute('src', 'images/icons/'+i+'.png');
-  				enter.appendChild(flair_special);
-  			}
-  		}
-  	}
-  };
-  xhr.send();
 
   //restore previous state
   updatePage();
@@ -302,7 +296,7 @@ jQuery(document).ready(function($) {
   countLegends();
 
   //main function for selecting icons
-  $("#special img").mousedown(function(e) {
+  $("#special img").on("click", function(e) {
     var isChecked = document.getElementById('hide-lr').checked;
 
     const $obj = $(this);
