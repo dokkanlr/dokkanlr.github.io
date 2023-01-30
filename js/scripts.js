@@ -1,21 +1,19 @@
-// check server directory via API link to count images
-$.ajax({
-  url: "https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master",
-  success: function (data) {
-      var image_count = $(data).length;
+//SPECIAL FLAIRS
+loadFlairs = function() {
+  var enter = document.getElementById('special');
 
-      var enter = document.getElementById('special');
+  for (i=1; i<=114; i++) {
+    //creates HTML for special flairs
+    var flair_special = document.createElement('img');
+    flair_special.setAttribute('class', 'flair');
+    flair_special.setAttribute('id', i);
+    flair_special.setAttribute('src', 'images/icons/'+i+'.png');
 
-      // loop to generate flairs based on file count
-      for (var i = 1; i <= image_count; i++) {
-        var flair_special = document.createElement('img');
-        flair_special.setAttribute('class', 'flair');
-        flair_special.setAttribute('id', i);
-        flair_special.setAttribute('src', 'images/icons/'+i+'.png');
-        enter.appendChild(flair_special);
-      }
-    }
-});
+    enter.appendChild(flair_special);
+  }
+}
+
+// <----------------------------------------------------------------->
 
 // updates local storage values
 function updateStorage(key, value, save) {
@@ -70,7 +68,6 @@ function updatePage() {
 function selectPage() {
     //adds selected class to every icon
     $("#special .flair:not(.disabled)").addClass("selected");
-
 
   var className = document.getElementsByClassName('selected');
   var idStore = new Array();
@@ -287,7 +284,10 @@ function importSelection() {
   countLegends();
 }
 
-jQuery(document).ready(function($) {
+// on page load
+$(document).ready(function() {
+  // generate icons
+  loadFlairs();
 
   //restore previous state
   updatePage();
