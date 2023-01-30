@@ -1,5 +1,7 @@
 var xhr = new XMLHttpRequest();
 
+xhr.open("GET", "https://github.com/dokkan-lr/dokkan-lr.github.io/tree/master/images/icons", true);
+
 xhr.onload = function() {
 	if (xhr.readyState === xhr.DONE) {
 		if (xhr.status === 200) {
@@ -20,5 +22,4 @@ xhr.onload = function() {
 	}
 };
 
-xhr.open("GET", "images/icons/", true);
 xhr.send();
