@@ -296,7 +296,7 @@ jQuery(document).ready(function($) {
   countLegends();
 
   //main function for selecting icons
-  $("#special img").on("click", function(e) {
+  $(document).on("click", "#special img", function(e) {
     var isChecked = document.getElementById('hide-lr').checked;
 
     const $obj = $(this);
