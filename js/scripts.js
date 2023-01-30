@@ -1,7 +1,7 @@
 // create icon elements based on server directory file count
 var xhr = new XMLHttpRequest();
 
-xhr.open("GET", "https://api.github.com/repos/dokkan-lr/dokkan-lr.github.io/contents/images/icons?ref=master", true);
+xhr.open("GET", "https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master", true);
 
 xhr.onload = function() {
 	if (xhr.readyState === xhr.DONE) {
