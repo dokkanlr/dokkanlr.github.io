@@ -2,7 +2,8 @@
 loadFlairs = function() {
   var enter = document.getElementById('special');
 
-  for (i=1; i<=114; i++) {
+  // length variable from fetch API below
+  for (i=1; i<=length; i++) {
     //creates HTML for special flairs
     var flair_special = document.createElement('img');
     flair_special.setAttribute('class', 'flair');
@@ -12,8 +13,6 @@ loadFlairs = function() {
     enter.appendChild(flair_special);
   }
 }
-
-// <----------------------------------------------------------------->
 
 // updates local storage values
 function updateStorage(key, value, save) {
@@ -284,16 +283,24 @@ function importSelection() {
   countLegends();
 }
 
-// on page load
+
+
 $(document).ready(function() {
-  // generate icons
-  loadFlairs();
 
-  //restore previous state
-  updatePage();
+  fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master')
+  .then(response => response.json()) // convert API to json format
+  .then(function (response) {
+    length = Object.values(response).length;
 
-  //legend counter
-  countLegends();
+    // generate icons
+    loadFlairs();
+
+    //restore previous state
+    updatePage();
+
+    //legend counter
+    countLegends();
+  });
 
   //main function for selecting icons
   $("#special").on("click", "img", function(e) {
