@@ -3,7 +3,7 @@ loadFlairs = function() {
   var enter = document.getElementById('special');
 
   // length variable from fetch API below
-  for (i=1; i<=length; i++) {
+  for (i=1; i<=total; i++) {
     //creates HTML for special flairs
     var flair_special = document.createElement('img');
     flair_special.setAttribute('class', 'flair');
@@ -13,6 +13,8 @@ loadFlairs = function() {
     enter.appendChild(flair_special);
   }
 }
+
+// <----------------------------------------------------------------->
 
 // updates local storage values
 function updateStorage(key, value, save) {
@@ -290,7 +292,7 @@ $(document).ready(function() {
   fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master')
   .then(response => response.json()) // convert API to json format
   .then(function (response) {
-    length = Object.values(response).length;
+    total = Object.values(response).length;
 
     // generate icons
     loadFlairs();
