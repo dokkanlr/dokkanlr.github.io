@@ -281,7 +281,7 @@ function importSelection() {
   coreFunctions();
 }
 
-function mainFunctions() {
+function coreFunctions() {
   //restore previous state
   updatePage();
 
