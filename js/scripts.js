@@ -3,7 +3,7 @@ loadFlairs = function() {
   var enter = document.getElementById('special');
 
   // length variable from fetch API below
-  for (i=1; i<=total; i++) {
+  for (i in total) {
     //creates HTML for special flairs
     var flair_special = document.createElement('img');
     flair_special.setAttribute('class', 'flair');
@@ -278,6 +278,10 @@ function importSelection() {
     $('#undefined').fadeIn().delay(1000).fadeOut();
   }
 
+  mainFunctions();
+}
+
+function mainFunctions() {
   //restore previous state
   updatePage();
 
@@ -292,16 +296,11 @@ $(document).ready(function() {
   fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/contents/images/icons?ref=master')
   .then(response => response.json()) // convert API to json format
   .then(function (response) {
-    total = Object.values(response).length;
+    total = Object.values(response);
 
     // generate icons
     loadFlairs();
-
-    //restore previous state
-    updatePage();
-
-    //legend counter
-    countLegends();
+    mainFunctions();
   });
 
   //main function for selecting icons
