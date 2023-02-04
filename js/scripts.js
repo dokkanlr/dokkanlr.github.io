@@ -8,7 +8,7 @@ loadFlairs = function() {
     var flair_special = document.createElement('img');
     flair_special.setAttribute('class', 'flair');
     flair_special.setAttribute('id', i);
-    flair_special.setAttribute('src', 'images/icons/'+i+'.png');
+    flair_special.setAttribute('src', 'images/icons/'+i+'.webp');
 
     enter.appendChild(flair_special);
   }
