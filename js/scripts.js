@@ -152,11 +152,13 @@ function toggleModal(e) {
   closeBtn.onclick = function(){
     modal.style.visibility = "hidden";
     modal.style.opacity = "0";
+    $('#import-text').val('');
   }
   window.onclick = function(e){
     if(e.target == modal){
       modal.style.visibility = "hidden";
       modal.style.opacity = "0";
+      $('#import-text').val('');
     }
   }
 }
