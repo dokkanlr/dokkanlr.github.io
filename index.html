@@ -47,11 +47,13 @@
     <button id="select-all">Select All</button>
     <button id="select-none">Reset</button>
     <button id="list-hidden">List Removed LRs</button>
-    <button id="generate" onclick="generateImage()">Generate Image</button>
-    <button onclick="toggleModal3()">Import/Export</button>
+    <button id="generate">Generate Image</button>
+    <button id="import">Import</button>
+    <button id="export">Export</button>
   </div>
 
-  <div class="modal">
+  <!--Generate Image Window-->
+  <div class="modal" id="image-modal">
     <div class="modal-container">
       <div class="modal-header">
         <span class="modal-text">Image Export</span>
@@ -63,32 +65,50 @@
     </div>
   </div>
 
-  <div class="modal2">
+  <!--Removed LRs Window-->
+  <div class="modal" id="removed-modal">
     <div class="modal-container">
       <div class="modal-header">
         <span class="modal-text">Removed LRs</span>
         <p><i>(Click icons to unhide LRs)</i></p>
-        <span class="close-btn2">&times;</span>
+        <span class="close-btn">&times;</span>
       </div>
       <div class="modal-content2"></div>
     </div>
   </div>
 
-  <div class="modal3">
+  <!--Import Checklist Window-->
+  <div class="modal" id="import-modal">
     <div class="modal-container">
       <div class="modal-header">
-        <span class="modal-text">Import/Export Checklist</span>
-        <span class="close-btn3">&times;</span>
+        <p class="warning">WARNING: Importing WILL overwrite your current checklist.</p>
+        <span class="modal-text">Import Checklist</span>
       </div>
       <div class="modal-content3">
-        <p class="warning">WARNING: Importing WILL overwrite your current checklist.</p>
-        <button id="import" onclick="toggleImport()">Import Checklist</button>
-        <button id="export" onclick="exportSelection()">Export Checklist</button>
-        <input type="text" id="import-text"><button id="apply-import" onclick="importSelection()">Apply</button>
-        <input type="text" id="export-text" onclick="this.setSelectionRange(0, this.value.length)"><button id="copy-export" onclick="copySelection()">Copy</button>
-        <div id="display-copied">Copied to clipboard!</div>
+        <input type="text" class="textarea" id="import-text" placeholder="Enter your code here">
+        <div class="modal-action">
+          <button class="close-btn btn-error">Cancel</button>
+          <button class="btn" id="import-btn">Import</button>
+        </div>
         <div id="imported">Checklist imported!</div>
-        <div id="undefined">Invalid data, please generate a new export</div>
+        <div id="undefined">Invalid data, please generate a new export.</div>
+      </div>
+    </div>
+  </div>
+
+  <!--Export Checklist Window-->
+  <div class="modal" id="export-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <span class="modal-text">Export Checklist</span>
+      </div>
+      <div class="modal-content3">
+        <input type="text" class="textarea" id="export-text" onclick="this.setSelectionRange(0, this.value.length)">
+        <div class="modal-action">
+          <button class="close-btn btn-error">Cancel</button>
+          <button class="btn" id="copy-export">Copy</button>
+        </div>
+        <div id="display-copied">Copied to clipboard!</div>
       </div>
     </div>
   </div>
