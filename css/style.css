@@ -27,8 +27,8 @@ margin-top:10px;
 
 #image-download {
 position:absolute;
-left:10px;
-top:5px;
+left:4px;
+top:4px;
 }
 
 .modal-header p {
@@ -83,7 +83,7 @@ box-shadow: 0 25px 50px -12px #00000040;
 }
 
 #image-modal .modal-container {
-max-width:100%;
+max-width:1500px;
 }
 
 .modal-content, .modal-content2, .modal-content3 {
