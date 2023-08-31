@@ -176,18 +176,18 @@ function generateImage() {
 
   $(".modal-content").empty();
 
-  domtoimage.toSvg($('.icon-container')[0]).then(function (dataUrl) {
-          var img = new Image();
-          img.src = dataUrl;
-          $(".modal-content").append(img);
-  });
+   domtoimage.toPng($('.icon-container')[0]).then(function (dataUrl) {
+           var img = new Image();
+           img.src = dataUrl;
+           $(".modal-content").append(img);
+   });
 }
 
 
 //download feature
 function download() {
   domtoimage.toBlob($('.icon-container')[0]).then(function (blob) {
-        window.saveAs(blob, 'checklist.jpg');
+        window.saveAs(blob, 'checklist.png');
     });
 }
 
