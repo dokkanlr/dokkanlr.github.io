@@ -121,7 +121,7 @@ function listHidden() {
     var flair = document.createElement('img');
     flair.setAttribute('class', 'flair');
     flair.setAttribute('name', disabled[i].id);
-    flair.setAttribute('src', 'images/icons/'+disabled[i].id+'.png');
+    flair.setAttribute('src', 'images/icons/'+disabled[i].id+'.webp');
 
     box.append(flair);
   }
