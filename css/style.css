@@ -34,7 +34,7 @@ top:4px;
 .modal-header p {
 position: absolute;
 top: 0;
-left: 10px;
+left: 5px;
 color: #6ee8fd;
 font-size: 12px;
 }
@@ -319,18 +319,18 @@ height:20px;
 position:absolute;
 top:0;
 left:0;
-width:220px;
+width:200px;
 }
 
 footer div {
 color:#fff;
-line-height:40px;
+line-height:30px;
 font-weight:400;
 font-size:12px;
 }
 
 footer div a {
-color:#b3b3ff;
+color:#ffeb7d;
 }
 
 #hide-legends,button {
@@ -367,7 +367,6 @@ background-color: #f87272;
 color: #631717;
 line-height: 30px;
 padding: 5px;
-font-weight: 700;
 font-size: 14px;
 width: 70px;
 height: auto;
@@ -382,7 +381,6 @@ background-color: #3abff8;
 color: #0e4259;
 line-height: 30px;
 padding: 5px;
-font-weight: 700;
 font-size: 14px;
 width: 70px;
 border-radius: 7px;
