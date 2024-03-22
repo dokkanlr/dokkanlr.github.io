@@ -21,8 +21,14 @@ position:relative;
   .eza:before {
     height:18px!important;
     width:20px!important;
-    bottom:6px!important;
+    bottom:5px!important;
     right:6px!important;
+  }
+  .eza2:before {
+    height:23px!important;
+    width:27px!important;
+    bottom:4px!important;
+    right:4px!important;
   }
 }
 
@@ -36,6 +42,12 @@ position:relative;
     width:15px!important;
     bottom:2px!important;
     right:2px!important;
+  }
+  .eza2:before {
+    height:17px!important;
+    width:20px!important;
+    right:2px!important;
+    bottom:0px!important;
   }
 }
 
@@ -55,6 +67,18 @@ right:4px;
 background-size:contain;
 }
 
-div.eza {
+div.eza, div.eza2 {
 position:relative;
+}
+
+.eza2:before {
+content:"";
+display:block;
+height: 21px;
+width: 24px;
+background:url(../images/eza2.webp);
+position:absolute;
+bottom:2px;
+right:4px;
+background-size:contain;
 }
