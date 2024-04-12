@@ -421,3 +421,31 @@ border: 2px solid #ac5ece;
 border-radius:7px;
 margin-top:5px;
 }
+
+.changelog {
+position: absolute;
+left: 10px;
+top: 70px;
+background:#010e00;
+color:#7dff51;
+border:1px solid #7dff51;
+min-width: 190px;
+}
+
+.changelog h2 {
+margin: 0;
+border-bottom:1px solid #7dff51;
+font-size: 1em;
+}
+
+.changelog h3 {
+font-size: .8em;
+margin: 5px 0 0;
+color: #ede19b;
+}
+
+.changelog li {
+font-size: 13px;
+color: #b9fda2;
+margin-bottom: 5px;
+}
