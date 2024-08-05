@@ -1,15 +1,15 @@
 //SPECIAL FLAIRS
 loadFlairs = function() {
-  var enter = document.getElementById('special');
+  let enter = document.getElementById('special');
 
-  var eza = [
+  let eza = [
     1,2,3,4,5,6,7,8,9,
     10,11,12,13,14,15,16,17,18,19,
     20,21,22,23,24,25,26,27,28,29,
     30,31,32,33,34,35,36,37,38,39,
     40,41,42,44,45,46,47,49,
     50,51,52,53,54,55,56,57,58,59,
-    60,61,62,63,65,67,68,69,
+    60,61,62,63,64,65,67,68,69,
     70,72,74,75,76,77,
     87,88,
     95,98,
@@ -17,15 +17,40 @@ loadFlairs = function() {
     135
   ]
 
-  var eza2 = [
+  let eza2 = [
 
   ]
+
+  //changelog items
+  const updateItems = [
+  "TEQ Jiren EZA",
+  ]
+
+  //changelog date
+  const options = {year: 'numeric', month: 'long', day: 'numeric'};
+  const d = new Date("2024-08-05");
+
+  //append formatted date
+  $('.changelog h3').append("Last Update: "+d.toLocaleDateString("en-GB", options));
+
+  //changelog HTML selector
+  let changelog = document.getElementById('changelog-item');
+
+  //appends changelog items to the defined HTML element
+  for (i in updateItems) {
+    let node = document.createElement('li');
+    current = updateItems[i];
+
+    node.append(current);
+    changelog.appendChild(node);
+  }
+
 
   // length variable from fetch API below
   for (i=1; i<=total; i++) {
 
     //creates HTML for special flairs
-    var flair_special = document.createElement('div');
+    let flair_special = document.createElement('div');
     flair_special.setAttribute('class', 'flair');
     flair_special.setAttribute('id', i);
     flair_special.style.backgroundImage='url(../images/icons/'+i+'.webp)';
@@ -65,8 +90,8 @@ function readStorageValue(key) {
 
 // reads entire local storage array
 function readAllStorage() {
-  const nbItem = localStorage.length;
-  const store = [];
+  let nbItem = localStorage.length;
+  let store = [];
   let i;
   let storeKey;
   for (i = 0; i < nbItem; i += 1) {
@@ -102,8 +127,8 @@ function selectPage() {
     //adds selected class to every icon
     $("#special .flair:not(.disabled)").addClass("selected");
 
-  var className = document.getElementsByClassName('selected');
-  var idStore = new Array();
+  const className = document.getElementsByClassName('selected');
+  let idStore = new Array();
 
 
   //loops every ID and stores key into array
@@ -132,9 +157,9 @@ function resetPage() {
 
 //total legend tracker
 function countLegends() {
-  var amount = $(".selected").length;
-  var total = $("#special .flair").length;
-  var disabled = $('.disabled').length;
+  const amount = $(".selected").length;
+  const total = $("#special .flair").length;
+  const disabled = $('.disabled').length;
 
   $('#counter').html("<span class='cl'>Total LRs - </span>" + amount + "/" + (total-disabled));
 }
@@ -145,12 +170,12 @@ function listHidden() {
   $(".modal-content2").empty();
   $("#hide-lr").prop("checked", false);
 
-  var disabled = $(".disabled");
-  var box = $('.modal-content2');
+  const disabled = $(".disabled");
+  const box = $('.modal-content2');
 
   //creates new images for hidden legends
   for(var i = 0; i < disabled.length; i++) {
-    var flair = document.createElement('img');
+    const flair = document.createElement('img');
     flair.setAttribute('class', 'flair');
     flair.setAttribute('name', disabled[i].id);
     flair.setAttribute('src', 'images/icons/'+disabled[i].id+'.webp');
@@ -160,8 +185,8 @@ function listHidden() {
 
   //unhide legends in checklist when clicked
   $(".modal-content2 img").mousedown(function(e) {
-    const $obj = $(this);
-    var id = $obj[0].name;
+    let $obj = $(this);
+    let id = $obj[0].name;
 
     $("#"+id).removeClass('disabled');
     //removes from modal display
@@ -196,7 +221,7 @@ function toggleModal(e) {
 }
 
 function windowOnClick(event) {
-  var modal = document.querySelector(".modal");
+  const modal = document.querySelector(".modal");
    if (event.target === modal) {
        toggleModal();
    }
@@ -209,7 +234,7 @@ function generateImage() {
   $(".modal-content").empty();
 
    domtoimage.toPng($('.icon-container')[0]).then(function (dataUrl) {
-           var img = new Image();
+           const img = new Image();
            img.src = dataUrl;
            $(".modal-content").append(img);
    });
@@ -225,7 +250,7 @@ function download() {
 
 //export localStorage
 function exportSelection() {
-  var raw = JSON.stringify(localStorage);
+  let raw = JSON.stringify(localStorage);
   container = document.getElementById("export-text");
   container.setAttribute("style", "transform: translateY(0); opacity: 1; z-index: 1;");
   container.value = LZString.compressToEncodedURIComponent(raw);
@@ -241,7 +266,7 @@ function copySelection() {
 
 //apply imported data
 function importSelection() {
-  var text = document.getElementById("import-text").value;
+  let text = document.getElementById("import-text").value;
 
   plaintext = LZString.decompressFromEncodedURIComponent(text);
 
@@ -256,7 +281,7 @@ function importSelection() {
 
     // Iterate over the JSON object and save to localstorage
     Object.keys(data).map(function(key, index) {
-        var value = data[key];
+        const value = data[key];
         localStorage.setItem(key, value);
     });
 
@@ -293,7 +318,7 @@ $(document).ready(function() {
 
   //main function for selecting icons
   $("#special").on("click", "div", function(e) {
-    var isChecked = document.getElementById('hide-lr').checked;
+    const isChecked = document.getElementById('hide-lr').checked;
 
     const $obj = $(this);
 
