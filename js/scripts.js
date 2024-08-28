@@ -10,7 +10,7 @@ loadFlairs = function() {
     40,41,42,44,45,46,47,49,
     50,51,52,53,54,55,56,57,58,59,
     60,61,62,63,64,65,67,68,69,
-    70,72,74,75,76,77,
+    70,71,72,74,75,76,77,
     87,88,
     95,98,
     116,
@@ -23,12 +23,14 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "TEQ Jiren EZA",
+  "STR Turles EZA",
+  "PHY SSJ Goku/Trunks/Gohan",
+  "TEQ Broly"
   ]
 
   //changelog date
   const options = {year: 'numeric', month: 'long', day: 'numeric'};
-  const d = new Date("2024-08-05");
+  const d = new Date("2024-08-28");
 
   //append formatted date
   $('.changelog h3').append("Last Update: "+d.toLocaleDateString("en-GB", options));
