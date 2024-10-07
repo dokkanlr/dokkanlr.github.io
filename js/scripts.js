@@ -11,7 +11,7 @@ loadFlairs = function() {
     50,51,52,53,54,55,56,57,58,59,
     60,61,62,63,64,65,67,68,69,
     70,71,72,74,75,76,77,
-    87,88,
+    82,84,87,88,
     95,98,
     116,
     135
@@ -23,14 +23,13 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "TEQ Broly EZA",
-  "INT LSSJ Broly",
-  "STR SSJ Gohan"
+  "TEQ Gogeta EZA",
+  "PHY Janemba EZA"
   ]
 
   //changelog date
   const options = {year: 'numeric', month: 'long', day: 'numeric'};
-  const d = new Date("2024-09-13");
+  const d = new Date("2024-10-07");
 
   //append formatted date
   $('.changelog h3').append("Last Update: "+d.toLocaleDateString("en-GB", options));
