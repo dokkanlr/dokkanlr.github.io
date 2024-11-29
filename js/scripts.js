@@ -11,8 +11,8 @@ loadFlairs = function() {
     50,51,52,53,54,55,56,57,58,59,
     60,61,62,63,64,65,67,68,69,
     70,71,72,74,75,76,77,
-    82,84,87,88,
-    95,98,
+    82,84,87,88,89,
+    90,95,98,
     116,
     135
   ]
@@ -23,10 +23,7 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "TEQ Gohan/Piccolo",
-  "TEQ SSJ Goku Super EZA",
-  "TEQ Demon King Piccolo EZA",
-  "TEQ Grandpa Gohan"
+  "STR Anilaza",
   ]
 
   //changelog date
