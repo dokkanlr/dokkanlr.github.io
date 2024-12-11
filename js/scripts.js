@@ -28,7 +28,7 @@ loadFlairs = function() {
 
   //changelog date
   const options = {year: 'numeric', month: 'long', day: 'numeric'};
-  const d = new Date("2024-10-12");
+  const d = new Date("2024-12-11");
 
   //append formatted date
   $('.changelog h3').append("Last Update: "+d.toLocaleDateString("en-GB", options));
