@@ -23,7 +23,7 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "STR Anilaza",
+  "TEQ SSJ3 Gotenks",
   ]
 
   //changelog date
