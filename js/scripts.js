@@ -26,49 +26,51 @@ loadFlairs = function() {
   "TEQ SSJ3 Gotenks",
   ]
 
-  //changelog date
-  const options = {year: 'numeric', month: 'long', day: 'numeric'};
-  const d = new Date("2024-12-11");
+  // Fetch the latest commit date from GitHub API
+const fetchLatestCommitDate = async () => {
+  try {
+    const response = await fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/commits');
+    if (!response.ok) throw new Error('Failed to fetch commit data');
+    const commits = await response.json();
 
-  //append formatted date
-  $('.changelog h3').append("Last Update: "+d.toLocaleDateString("en-GB", options));
+    // Get the date of the latest commit
+    const latestCommitDate = commits[0].commit.committer.date;
+    const formattedDate = new Date(latestCommitDate).toLocaleDateString("en-GB", {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
 
-  //changelog HTML selector
-  let changelog = document.getElementById('changelog-item');
+    // Update the changelog date dynamically
+    document.querySelector('.changelog h3').textContent = `Last Update: ${formattedDate}`;
+  } catch (error) {
+    console.error('Error fetching the latest commit date:', error);
+  }
+};
 
-  //appends changelog items to the defined HTML element
-  for (i in updateItems) {
-    let node = document.createElement('li');
-    current = updateItems[i];
+// Call the function during initialization
+fetchLatestCommitDate();
 
-    node.append(current);
-    changelog.appendChild(node);
+  // Append changelog items
+  const changelog = document.getElementById('changelog-item');
+  updateItems.forEach(item => {
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    changelog.appendChild(listItem);
+  });
+
+  // Create special flairs dynamically
+  for (let i = 1; i <= total; i++) {
+    const flairSpecial = document.createElement('div');
+    flairSpecial.className = 'flair';
+    flairSpecial.id = i;
+    flairSpecial.style.backgroundImage = `url(../images/icons/${i}.webp)`;
+    enter.appendChild(flairSpecial);
   }
 
-
-  // length variable from fetch API below
-  for (i=1; i<=total; i++) {
-
-    //creates HTML for special flairs
-    let flair_special = document.createElement('div');
-    flair_special.setAttribute('class', 'flair');
-    flair_special.setAttribute('id', i);
-    flair_special.style.backgroundImage='url(../images/icons/'+i+'.webp)';
-
-    enter.appendChild(flair_special);
-  }
-
-  //assigns EZA class based on array
-  for (i in eza) {
-    current = eza[i];
-    $("#"+current).attr('class', 'flair eza');
-  }
-
-  //assigns SUPER EZA class based on array
-  for (i in eza2) {
-    current = eza2[i];
-    $("#"+current).attr('class', 'flair eza2');
-  }
+  // Assign EZA and SUPER EZA classes
+  eza.forEach(id => document.getElementById(id)?.classList.add('eza'));
+  eza2.forEach(id => document.getElementById(id)?.classList.add('eza2'));
 }
 
 // <----------------------------------------------------------------->
