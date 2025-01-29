@@ -9,7 +9,7 @@ loadFlairs = function() {
     30,31,32,33,34,35,36,37,38,39,
     40,41,42,43,44,45,46,47,48,49,
     50,51,52,53,54,55,56,57,58,59,
-    60,61,62,63,64,65,67,68,69,
+    60,61,62,63,64,65,66,67,68,69,
     70,71,72,74,75,76,77,
     82,84,87,88,89,
     90,95,98,
@@ -23,33 +23,8 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "TEQ SSJ3 Gotenks",
+  "10th Anni Pt.1 LRs",
   ]
-
-  // Fetch the latest commit date from GitHub API
-const fetchLatestCommitDate = async () => {
-  try {
-    const response = await fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/commits');
-    if (!response.ok) throw new Error('Failed to fetch commit data');
-    const commits = await response.json();
-
-    // Get the date of the latest commit
-    const latestCommitDate = commits[0].commit.committer.date;
-    const formattedDate = new Date(latestCommitDate).toLocaleDateString("en-GB", {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-
-    // Update the changelog date dynamically
-    document.querySelector('.changelog h3').textContent = `Last Update: ${formattedDate}`;
-  } catch (error) {
-    console.error('Error fetching the latest commit date:', error);
-  }
-};
-
-// Call the function during initialization
-fetchLatestCommitDate();
 
   // Append changelog items
   const changelog = document.getElementById('changelog-item');
@@ -58,6 +33,31 @@ fetchLatestCommitDate();
     listItem.textContent = item;
     changelog.appendChild(listItem);
   });
+
+  // Fetch the latest commit date from GitHub API
+  const fetchLatestCommitDate = async () => {
+    try {
+      const response = await fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/commits');
+      if (!response.ok) throw new Error('Failed to fetch commit data');
+      const commits = await response.json();
+
+      // Get the date of the latest commit
+      const latestCommitDate = commits[0].commit.committer.date;
+      const formattedDate = new Date(latestCommitDate).toLocaleDateString("en-GB", {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      // Update the changelog date dynamically
+      document.querySelector('.changelog h3').textContent = `Last Update: ${formattedDate}`;
+    } catch (error) {
+      console.error('Error fetching the latest commit date:', error);
+    }
+  };
+
+  // Call the function during initialization
+  fetchLatestCommitDate();
 
   // Create special flairs dynamically
   for (let i = 1; i <= total; i++) {
