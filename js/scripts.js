@@ -30,9 +30,18 @@ loadFlairs = function() {
 
   // Append changelog items
   const changelog = document.getElementById('changelog-item');
+  const types = ["AGL", "INT", "STR", "TEQ", "PHY"];
+
   updateItems.forEach(item => {
     const listItem = document.createElement('li');
-    listItem.textContent = item;
+    let modifiedText = item;
+
+    types.forEach(type => {
+      const regex = new RegExp(`\\b${type}\\b`, 'g');
+      modifiedText = modifiedText.replace(regex, `<span class="${type}">${type}</span>`);
+    });
+
+    listItem.innerHTML = modifiedText;
     changelog.appendChild(listItem);
   });
 

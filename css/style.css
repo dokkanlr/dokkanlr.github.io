@@ -450,3 +450,58 @@ color: #b9fda2;
 margin-bottom: 5px;
 list-style-position:inside;
 }
+
+.INT {
+background-image: url(../images/int.webp);
+display: inline-block;
+height: 30px;
+width: 30px;
+background-size: contain;
+color: transparent;
+top: -4px;
+position: relative;
+}
+
+.PHY {
+background-image: url(../images/phy.webp);
+display: inline-block;
+height: 30px;
+width: 30px;
+background-size: contain;
+color: transparent;
+top: -4px;
+position: relative;
+}
+
+.STR {
+background-image: url(../images/str.webp);
+display: inline-block;
+height: 30px;
+width: 30px;
+background-size: contain;
+color: transparent;
+top: -4px;
+position: relative;
+}
+
+.AGL {
+background-image: url(../images/agl.webp);
+display: inline-block;
+height: 30px;
+width: 30px;
+background-size: contain;
+color: transparent;
+top: -4px;
+position: relative;
+}
+
+.TEQ {
+background-image: url(../images/teq.webp);
+display: inline-block;
+height: 30px;
+width: 30px;
+background-size: contain;
+color: transparent;
+top: -4px;
+position: relative;
+}
