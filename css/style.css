@@ -169,10 +169,10 @@ opacity:1;
 }
 
 .switch,.switch2,.switch3 {
-position:absolute;
+position:relative;
 display:inline-block;
-top:-27px;
-left:0;
+bottom:-10px;
+left:20px;
 width:30px;
 height:18px;
 }
@@ -194,9 +194,9 @@ height:0;
 }
 
 .tooltip, .tooltip3 {
-position:absolute;
-left:35px;
-top:-27px;
+position:relative;
+left:20px;
+bottom:-6px;
 color:#eee;
 font-size:13px;
 font-weight:500;
@@ -318,8 +318,7 @@ footer {
 height:20px;
 position:absolute;
 top:0;
-left:0;
-width:200px;
+left:10px;
 }
 
 footer div {
@@ -414,7 +413,7 @@ background: #ff9c9c;
 }
 
 #import-modal .warning {
-color: #ddd;
+color: #eee;
 background: #11081b;
 padding: 5px;
 border: 2px solid #ac5ece;
@@ -425,11 +424,12 @@ margin-top:5px;
 .changelog {
 position: absolute;
 left: 10px;
-top: 70px;
+top: 30px;
 background:#010e00;
 color:#7dff51;
 border:1px solid #7dff51;
 min-width: 190px;
+border-radius: 5px;
 }
 
 .changelog h2 {
@@ -440,7 +440,7 @@ font-size: 1em;
 
 .changelog h3 {
 font-size: .8em;
-margin: 5px 0 0;
+margin: 5px;
 color: #ede19b;
 }
 
@@ -448,60 +448,31 @@ color: #ede19b;
 font-size: 13px;
 color: #b9fda2;
 margin-bottom: 5px;
-list-style-position:inside;
+margin-left: 5px;
+list-style-type: none;
 }
 
 .INT {
-background-image: url(../images/int.webp);
-display: inline-block;
-height: 30px;
-width: 30px;
-background-size: contain;
-color: transparent;
-top: -4px;
-position: relative;
+font-weight: 700;
+color: #ab52bd;
 }
 
 .PHY {
-background-image: url(../images/phy.webp);
-display: inline-block;
-height: 30px;
-width: 30px;
-background-size: contain;
-color: transparent;
-top: -4px;
-position: relative;
+font-weight: 700;
+color: #ebb664;
 }
 
 .STR {
-background-image: url(../images/str.webp);
-display: inline-block;
-height: 30px;
-width: 30px;
-background-size: contain;
-color: transparent;
-top: -4px;
-position: relative;
+font-weight: 700;
+color: #d64d3e;
 }
 
 .AGL {
-background-image: url(../images/agl.webp);
-display: inline-block;
-height: 30px;
-width: 30px;
-background-size: contain;
-color: transparent;
-top: -4px;
-position: relative;
+font-weight: 700;
+color: #3f87ef;
 }
 
 .TEQ {
-background-image: url(../images/teq.webp);
-display: inline-block;
-height: 30px;
-width: 30px;
-background-size: contain;
-color: transparent;
-top: -4px;
-position: relative;
+font-weight: 700;
+color: #68f75b;
 }
