@@ -18,14 +18,15 @@ loadFlairs = function() {
   ]
 
   let eza2 = [
-    1
+    1, 6
   ]
 
   //changelog items
   const updateItems = [
-  "10th Anni Pt.1 LRs",
-  "INT Namek Goku EZA",
-  "AGL Frieza EZA"
+  "PHY SSJ2 Gohan",
+  "AGL SSJ Angel Vegeta",
+  "INT Frieza + Goku",
+  "INT SSJ2 Gohan Super EZA"
   ]
 
   // Append changelog items
