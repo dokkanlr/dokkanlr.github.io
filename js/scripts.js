@@ -28,7 +28,7 @@ loadFlairs = function() {
   "AGL SSJ Angel Vegeta",
   "INT Frieza + Goku",
   "INT SSJ2 Gohan Super EZA",
-  "Major restructure of icons based on true chronological order"
+  "Icons restructured based on true chronological order"
   ]
 
   // Append changelog items
