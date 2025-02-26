@@ -24,11 +24,7 @@ loadFlairs = function() {
 
   //changelog items
   const updateItems = [
-  "PHY SSJ2 Gohan",
-  "AGL SSJ Angel Vegeta",
-  "INT Frieza + Goku",
-  "INT SSJ2 Gohan Super EZA",
-  "Icons restructured based on true chronological order"
+  "Checklist retired"
   ]
 
   // Append changelog items
@@ -48,7 +44,7 @@ loadFlairs = function() {
     changelog.appendChild(listItem);
   });
 
-  // Fetch the latest commit date from GitHub API
+  //Fetch the latest commit date from GitHub API
   const fetchLatestCommitDate = async () => {
     try {
       const response = await fetch('https://api.github.com/repos/dokkanlr/dokkanlr.github.io/commits');
@@ -70,21 +66,21 @@ loadFlairs = function() {
     }
   };
 
-  // Call the function during initialization
+  //Call the function during initialization
   fetchLatestCommitDate();
 
   // Create special flairs dynamically
-  for (let i = 1; i <= total; i++) {
-    const flairSpecial = document.createElement('div');
-    flairSpecial.className = 'flair';
-    flairSpecial.id = i;
-    flairSpecial.style.backgroundImage = `url(../images/icons/${i}.webp)`;
-    enter.appendChild(flairSpecial);
-  }
-
-  // Assign EZA and SUPER EZA classes
-  eza.forEach(id => document.getElementById(id)?.classList.add('eza'));
-  eza2.forEach(id => document.getElementById(id)?.classList.add('eza2'));
+  // for (let i = 1; i <= total; i++) {
+  //   const flairSpecial = document.createElement('div');
+  //   flairSpecial.className = 'flair';
+  //   flairSpecial.id = i;
+  //   flairSpecial.style.backgroundImage = `url(../images/icons/${i}.webp)`;
+  //   enter.appendChild(flairSpecial);
+  // }
+  //
+  // // Assign EZA and SUPER EZA classes
+  // eza.forEach(id => document.getElementById(id)?.classList.add('eza'));
+  // eza2.forEach(id => document.getElementById(id)?.classList.add('eza2'));
 }
 
 // <----------------------------------------------------------------->

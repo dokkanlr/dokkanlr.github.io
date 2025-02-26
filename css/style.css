@@ -1,3 +1,11 @@
+.icon-container h1, .icon-container h2{
+color: #eee;
+}
+
+.icon-container a {
+  color:#6f3;
+}
+
 body {
 font-family:-apple-system, San Francisco Display, Helvetica Neue, Segoe UI, Helvetica, Arial, sans-serif;
 text-align:center;
